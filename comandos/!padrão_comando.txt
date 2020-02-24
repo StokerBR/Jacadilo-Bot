@@ -1,0 +1,7 @@
+module.exports = {
+    nome: '',
+    descrição: "",
+    executar(mensagem, arg){
+
+    }
+}
