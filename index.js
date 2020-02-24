@@ -2,8 +2,7 @@ const discord = require('discord.js');
 const ytdl = require('ytdl-core');
 
 const bot = new discord.Client();
-const token = 'NjgxMDgzNTM4MTA3NDAwMjIy.XlJhBw.vAFVpSyKSuU8DTv9pQ8WGnPYBAU';
-const versão = '0.1.1';
+const token = ''
 const prefixo = 'jacadilo '; const prefixo_maiusculo = 'Jacadilo ';
 const cargo_adm = '681306706080301167';
 
