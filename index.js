@@ -6,10 +6,10 @@ const ytdl = require('ytdl-core');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '0.1.2';
+const versão = '0.1.3';
 const prefixo = 'jacadilo ';
 const prefixo_maiusculo = 'Jacadilo ';
-const cargo_adm = '681306706080301167';
+const cooldown = new Set();
 
 //gerenciador de comandos
 bot.comandos = new discord.Collection();
@@ -57,12 +57,12 @@ bot.on('message', mensagem =>{
 
     //comandos
     switch(arg[0]){
-        case 'teste':
-            bot.comandos.get('teste').executar(mensagem, arg);
+        case 'oi':
+            bot.comandos.get('oi').executar(mensagem, arg);
             break;
 
         case 'info':
-            bot.comandos.get('info').executar(mensagem, arg);
+            bot.comandos.get('info').executar(mensagem, arg, versão);
             break;
 
         case 'spam':
@@ -74,10 +74,7 @@ bot.on('message', mensagem =>{
             break;
 
         case 'chame':
-            bot.comandos.get('chame').executar(mensagem, arg);
+            bot.comandos.get('chame').executar(mensagem, arg, cooldown);
             break;
-        case 'oi':
-            bot.comandos.get('oi').executar(mensagem, arg);
-            break;
-    }  
+    }
 });
