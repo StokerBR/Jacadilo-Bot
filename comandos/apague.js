@@ -1,8 +1,8 @@
 module.exports = {
     nome: 'apague',
-    descrição: "apaga a quantidade de mensagens (até 20)",
+    descrição: "apaga a quantidade determinada de mensagens (até 20)",
     executar(mensagem, arg){
-        if(mensagem.member.hasPermission('MANAGE_MESSAGES')){
+        if(mensagem.member.hasPermission("MANAGE_MESSAGES")){
             if(!arg[1]){
                 mensagem.channel.send('Como vou saber quantas mensagens é pra apagar se você não me falar?');
                 return;
@@ -28,7 +28,7 @@ module.exports = {
             }
         }
         else{
-            mensagem.channel.send('Você não tem permisssão pra limpar mensagens');
+            mensagem.channel.send('Você não tem permisssão pra apagar mensagens');
         }
     }
 }

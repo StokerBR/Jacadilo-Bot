@@ -16,7 +16,7 @@ module.exports = {
             }
         }
 
-        if(mensagem.member.hasPermission('ADMINISTRATOR') && arg != null){
+        if(mensagem.member.hasPermission("ADMINISTRATOR") && arg != null){
             if(arg[1] == 'ligado'){
                 if(arg[2] == 'lento'){
                     spam = 2;
