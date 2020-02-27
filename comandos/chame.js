@@ -3,7 +3,7 @@ module.exports = {
     descrição: "envia uma mensagem direta para a pessoa que foi marcada falando que a pessoa que usou o comando está chamando e, se inserido, uma mensagem",
     executar(mensagem, gerenciadorErros, arg, cooldown){
         try{
-            var fim_mensagem_chamar = false;
+            var fimMensagemChamar = false;
             var pessoa = mensagem.mentions.users.first();
             var autor = mensagem.author;
             var autor_e_pessoa = autor + pessoa;
@@ -23,12 +23,12 @@ module.exports = {
                     }
                     else{
                         let mensagem = autor + ' tá te chamando: "';
-                        for(let i = 2; !fim_mensagem_chamar; i++){
+                        for(let i = 2; !fimMensagemChamar; i++){
                             if(arg[i]){
                                 mensagem = mensagem + arg[i] + ' ';
                             }
                             else{
-                                fim_mensagem_chamar = true;
+                                fimMensagemChamar = true;
                             }
                         }
                         mensagem = mensagem.slice(0, -1);

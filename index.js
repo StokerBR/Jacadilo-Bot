@@ -6,7 +6,7 @@ const ytdl = require('ytdl-core');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '0.1.4';
+const versão = '0.1.5';
 const prefixo = 'jacadilo ';
 const cooldown = new Set();
 
@@ -16,8 +16,8 @@ const stokerAgiota = "682039067231387669"
 
 //gerenciador de comandos
 bot.comandos = new discord.Collection();
-const arquivos_comandos = fs.readdirSync('./comandos/').filter(arquivo => arquivo.endsWith('.js'));
-for(const arquivo of arquivos_comandos){
+const arquivosComandos = fs.readdirSync('./comandos/').filter(arquivo => arquivo.endsWith('.js'));
+for(const arquivo of arquivosComandos){
     const comando = require(`./comandos/${arquivo}`);
  
     bot.comandos.set(comando.nome, comando);
@@ -31,6 +31,7 @@ function gerenciadorErros (err, mensagem){
 
 //variáveis globais
 var spam = 0;
+var canalDeVozID = "0";
 
 //login
 bot.login(token);
@@ -45,7 +46,7 @@ bot.on('ready', () =>{
 bot.on('message', mensagem =>{
     try{
         //para minsúsculo
-        mensagem_minusculo = mensagem.content.toLowerCase();
+        mensagemMinusculo = mensagem.content.toLowerCase();
 
         //spam
         if(spam > 0){
@@ -57,21 +58,21 @@ bot.on('message', mensagem =>{
         }
 
         //se a mensagenm for somente "jacadilo"/"Jacadilo"
-        if(mensagem_minusculo == 'jacadilo' || mensagem_minusculo == 'jacadilo '){
+        if(mensagemMinusculo == 'jacadilo' || mensagemMinusculo == 'jacadilo '){
             mensagem.channel.send('Que??');
             return;
         }
 
         //checar se a mensagem inicia com o prefixo ou prefixo maiusculo
-        if(!mensagem_minusculo.startsWith(prefixo)) return;
+        if(!mensagemMinusculo.startsWith(prefixo)) return;
 
         //ler os argumentos
-        let arg = mensagem_minusculo.substring(prefixo.length).split(" ");
+        let arg = mensagemMinusculo.substring(prefixo.length).split(" ");
 
         //comandos
         switch(arg[0]){      
             case 'jacadilo':
-                bot.comandos.get('jacadilo').executar(mensagem, gerenciadorErros, arg, jacadilo);
+                bot.comandos.get('jacadilo').executar(mensagem, gerenciadorErros, arg, bot, jacadilo);
                 break;
            
             case 'oi':
@@ -96,6 +97,18 @@ bot.on('message', mensagem =>{
 
             case 'chame':
                 bot.comandos.get('chame').executar(mensagem, gerenciadorErros, arg, cooldown);
+                break;
+
+            case 'crie':
+                bot.comandos.get('crie').executar(mensagem, gerenciadorErros, arg);
+                break;
+
+            case 'entre':
+                canalDeVozID = bot.comandos.get('entre').executar(mensagem, gerenciadorErros, bot, canalDeVozID);
+                break;
+
+            case 'saia':
+                canalDeVozID = bot.comandos.get('saia').executar(mensagem, gerenciadorErros, bot, canalDeVozID);
                 break;
         }
     }
