@@ -3,7 +3,7 @@ module.exports = {
     descrição: "envia 'jacadilo' periodicamente",
     executar(mensagem, gerenciadorErros, arg, spam){
         try{
-            if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░'){
+            if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && mensagem.author.id == "681083538107400222"){
                 if(spam == 1){
                     setTimeout(() =>{
                         mensagem.channel.send('░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░');

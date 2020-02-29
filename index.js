@@ -6,7 +6,7 @@ const ytdl = require('ytdl-core');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '0.1.5';
+const versão = '0.2.0';
 const prefixo = 'jacadilo ';
 const cooldown = new Set();
 
@@ -53,17 +53,17 @@ bot.on('message', mensagem =>{
             let arg = null;
             bot.comandos.get('spam').executar(mensagem, gerenciadorErros, arg, spam);
         }
-        if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && spam == 0){
+        if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && spam == 0 && mensagem.author.id == "681083538107400222"){
             mensagem.delete(0);
         }
 
-        //se a mensagenm for somente "jacadilo"/"Jacadilo"
+        //se a mensagenm for somente "jacadilo"/"jacadilo "
         if(mensagemMinusculo == 'jacadilo' || mensagemMinusculo == 'jacadilo '){
             mensagem.channel.send('Que??');
             return;
         }
 
-        //checar se a mensagem inicia com o prefixo ou prefixo maiusculo
+        //checar se a mensagem inicia com o prefixo
         if(!mensagemMinusculo.startsWith(prefixo)) return;
 
         //ler os argumentos
@@ -109,6 +109,10 @@ bot.on('message', mensagem =>{
 
             case 'saia':
                 canalDeVozID = bot.comandos.get('saia').executar(mensagem, gerenciadorErros, bot, canalDeVozID);
+                break;
+
+            case 'cante':
+                canalDeVozID = bot.comandos.get('cante').executar(mensagem, gerenciadorErros, bot, ytdl, canalDeVozID);
                 break;
         }
     }
