@@ -1,16 +1,13 @@
 module.exports = {
     nome: 'cante',
     descrição: "toca 'interior crocodile alligator'",
-    executar(mensagem, gerenciadorErros, bot, ytdl, canalDeVozID){
+    executar(mensagem, gerenciadorErros, ytdl){
         try{
-            canalDeVozID = mensagem.member.voiceChannelID;
-            canalDeVoz = bot.channels.get(canalDeVozID);
-            if(!canalDeVoz){
+            if(!mensagem.member.voiceChannel){
                 mensagem.channel.send('Você precisa estar em um canal de voz pra me ouvir cantando');
-                return "0"
             }
             else{
-                canalDeVoz.join().then(function(connection){
+                mensagem.member.voiceChannel.join().then(function(connection){
                     var link = "https://youtu.be/I7TUr047h7o"
                     var expedidor = connection.playStream(ytdl(link));
         
@@ -18,7 +15,6 @@ module.exports = {
                         connection.disconnect();
                     });
                 });
-                return canalDeVozID;
             }
         }
         catch(err){

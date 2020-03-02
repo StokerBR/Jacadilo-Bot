@@ -25,7 +25,8 @@ module.exports = {
                     return;
                 }
                 else{
-                    mensagem.channel.bulkDelete(+arg[1] + 1);
+                    mensagem.delete();
+                    mensagem.channel.bulkDelete(+arg[1]);
                 }
             }
             else{

@@ -1,15 +1,14 @@
 module.exports = {
     nome: 'saia',
     descrição: "sai do canal de voz",
-    executar(mensagem, gerenciadorErros, bot, canalDeVozID){
+    executar(mensagem, gerenciadorErros){
         try{
-            if(canalDeVozID == "0"){
+            if(!mensagem.guild.voiceConnection){
                 mensagem.channel.send('Não estou em nenhum canal de voz');
             }
             else{
-                let canalDeVoz = bot.channels.get(canalDeVozID);
-                canalDeVoz.leave();
-                return "0";
+                mensagem.guild.voiceConnection.disconnect();
+                mensagem.channel.send('Saí');
             }
         }
         catch(err){

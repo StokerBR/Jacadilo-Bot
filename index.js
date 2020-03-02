@@ -6,7 +6,7 @@ const ytdl = require('ytdl-core');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '0.2.0';
+const versão = '0.2.1';
 const prefixo = 'jacadilo ';
 const cooldown = new Set();
 
@@ -104,15 +104,19 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'entre':
-                canalDeVozID = bot.comandos.get('entre').executar(mensagem, gerenciadorErros, bot, canalDeVozID);
+                bot.comandos.get('entre').executar(mensagem, gerenciadorErros);
                 break;
 
             case 'saia':
-                canalDeVozID = bot.comandos.get('saia').executar(mensagem, gerenciadorErros, bot, canalDeVozID);
+                bot.comandos.get('saia').executar(mensagem, gerenciadorErros);
                 break;
 
             case 'cante':
-                canalDeVozID = bot.comandos.get('cante').executar(mensagem, gerenciadorErros, bot, ytdl, canalDeVozID);
+                bot.comandos.get('cante').executar(mensagem, gerenciadorErros, ytdl);
+                break;
+            
+            case 'imite':
+                bot.comandos.get('imite').executar(mensagem, gerenciadorErros, arg);
                 break;
         }
     }
