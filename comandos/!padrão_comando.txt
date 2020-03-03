@@ -10,3 +10,5 @@ module.exports = {
         }
     }
 }
+
+bot.comandos.get('').executar(mensagem, gerenciadorErros, arg);
