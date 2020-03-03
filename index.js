@@ -2,11 +2,13 @@
 const discord = require('discord.js');
 const fs = require('fs');
 const ytdl = require('ytdl-core');
+const cheerio = require('cheerio');
+const request = require('request');
 
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '0.2.2';
+const versão = '0.2.3';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684268211675594753";
 const prefixo = 'jacadilo ';
@@ -15,6 +17,7 @@ const cooldown = new Set();
 //emojis
 const jacadilo = "682006794628759567"
 const stokerAgiota = "682039067231387669"
+const sadYeehaw = "684304867316990009";
 
 //gerenciador de comandos
 bot.comandos = new discord.Collection();
@@ -134,6 +137,10 @@ bot.on('message', mensagem =>{
                 break;
             case 'analise':
                 bot.comandos.get('análise').executar(mensagem, gerenciadorErros);
+                break;
+
+            case 'imagem':
+                bot.comandos.get('imagem').executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, sadYeehaw);
                 break;
         }
     }
