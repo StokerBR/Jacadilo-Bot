@@ -6,7 +6,9 @@ const ytdl = require('ytdl-core');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '0.2.1';
+const versão = '0.2.2';
+const jacadiloBotID = "681083538107400222";
+const canalJacadiloID = "684268211675594753";
 const prefixo = 'jacadilo ';
 const cooldown = new Set();
 
@@ -31,7 +33,6 @@ function gerenciadorErros (err, mensagem){
 
 //variáveis globais
 var spam = 0;
-var canalDeVozID = "0";
 
 //login
 bot.login(token);
@@ -53,8 +54,17 @@ bot.on('message', mensagem =>{
             let arg = null;
             bot.comandos.get('spam').executar(mensagem, gerenciadorErros, arg, spam);
         }
-        if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && spam == 0 && mensagem.author.id == "681083538107400222"){
+        if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && spam == 0 && mensagem.author.id == jacadiloBotID){
             mensagem.delete(0);
+        }
+
+        //canal apenas jacadilo
+        if(mensagem.channel.id == canalJacadiloID){
+            if(mensagem.author.id != jacadiloBotID && mensagemMinusculo != 'jacadilo' && mensagemMinusculo != 'jacadilo '){
+                mensagem.delete(0);
+                mensagem.reply('tá ficando bobo?\nVocê só pode enviar "jacadilo" nesse canal').then(mensagemEnviada => mensagemEnviada.delete(5000));
+            }
+            return;
         }
 
         //se a mensagenm for somente "jacadilo"/"jacadilo "
@@ -84,7 +94,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'info':
-                bot.comandos.get('info').executar(mensagem, gerenciadorErros, arg, versão, stokerAgiota);
+                bot.comandos.get('info').executar(mensagem, gerenciadorErros, arg, versão, stokerAgiota, jacadilo);
                 break;
 
             case 'spam':
@@ -100,7 +110,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'crie':
-                bot.comandos.get('crie').executar(mensagem, gerenciadorErros, arg);
+                bot.comandos.get('crie chamada').executar(mensagem, gerenciadorErros, arg);
                 break;
 
             case 'entre':
@@ -117,6 +127,13 @@ bot.on('message', mensagem =>{
             
             case 'imite':
                 bot.comandos.get('imite').executar(mensagem, gerenciadorErros, arg);
+                break;
+            
+            case 'análise':
+                bot.comandos.get('análise').executar(mensagem, gerenciadorErros);
+                break;
+            case 'analise':
+                bot.comandos.get('análise').executar(mensagem, gerenciadorErros);
                 break;
         }
     }

@@ -10,6 +10,9 @@ module.exports = {
             if(mensagem.mentions.everyone){
                 mensagem.channel.send('Só posso chamar uma pessoa de cada vez');
             }
+            else if(!arg[1]){
+                mensagem.channel.send('Tá carente?');
+            }
             else if(pessoa){
                 if(pessoa.id == '681083538107400222'){
                     mensagem.channel.send('Eu já tô aqui');
@@ -34,7 +37,7 @@ module.exports = {
                         mensagem = mensagem.slice(0, -1);
                         pessoa.send(mensagem + '"');
                     }
-                    mensagem.channel.send('Chamei').then(e => e.react('📢'));
+                    mensagem.channel.send('Chamei').then(mensagemEnviada => mensagemEnviada.react('📢'));
                     //inicia cooldown
                     cooldown.add(autor_e_pessoa);
                     setTimeout(() => {
