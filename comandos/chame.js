@@ -1,7 +1,7 @@
 module.exports = {
     nome: 'chame',
-    descrição: "envia uma mensagem direta para a pessoa que foi marcada falando que a pessoa que usou o comando está chamando e, se inserido, uma mensagem",
-    executar(mensagem, gerenciadorErros, arg, cooldown){
+    descrição: "envia uma mensagem direta para a pessoa que foi marcada falando que você está chamando ela. Também envia uma mensagem escrita por você, caso inserida, juntamente com o chamado",
+    executar(mensagem, gerenciadorErros, arg, cooldownChame){
         try{
             var fimMensagemChamar = false;
             var pessoa = mensagem.mentions.users.first();
@@ -17,7 +17,7 @@ module.exports = {
                 if(pessoa.id == '681083538107400222'){
                     mensagem.channel.send('Eu já tô aqui');
                 }
-                else if(cooldown.has(autor_e_pessoa)){
+                else if(cooldownChame.has(autor_e_pessoa)){
                     mensagem.channel.send('Não, kk. (Você já chamou essa pessoa recentemente, tente de novo em 30 segundos) ⏲️');
                 }
                 else{
@@ -39,14 +39,14 @@ module.exports = {
                     }
                     mensagem.channel.send('Chamei').then(mensagemEnviada => mensagemEnviada.react('📢'));
                     //inicia cooldown
-                    cooldown.add(autor_e_pessoa);
+                    cooldownChame.add(autor_e_pessoa);
                     setTimeout(() => {
-                        cooldown.delete(autor_e_pessoa);
+                        cooldownChame.delete(autor_e_pessoa);
                     }, 30000);
                 }
             }
             else{
-                mensagem.channel.send('"' + arg[1] + '" não está no servidor ou não é uma pessoa');
+                mensagem.channel.send('"' + arg[1] + '" não está no servidor, não é uma pessoa, ou não está marcado corretamente');
             }
         }
         catch(err){

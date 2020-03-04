@@ -4,15 +4,16 @@ const fs = require('fs');
 const ytdl = require('ytdl-core');
 const cheerio = require('cheerio');
 const request = require('request');
+const ytSearch = require('yt-search');
 
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '0.2.3';
+const versão = '0.2.4';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684268211675594753";
 const prefixo = 'jacadilo ';
-const cooldown = new Set();
+const cooldownChame = new Set();
 
 //emojis
 const jacadilo = "682006794628759567"
@@ -109,7 +110,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'chame':
-                bot.comandos.get('chame').executar(mensagem, gerenciadorErros, arg, cooldown);
+                bot.comandos.get('chame').executar(mensagem, gerenciadorErros, arg, cooldownChame);
                 break;
 
             case 'crie':
@@ -140,7 +141,18 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'imagem':
-                bot.comandos.get('imagem').executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, sadYeehaw);
+                bot.comandos.get('imagem').executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, jacadiloBotID, sadYeehaw);
+                break;
+
+            case 'vídeo':
+                bot.comandos.get('vídeo').executar(mensagem, gerenciadorErros, arg, bot, ytSearch, sadYeehaw);
+                break;
+            case 'video':
+                bot.comandos.get('vídeo').executar(mensagem, gerenciadorErros, arg, bot, ytSearch, sadYeehaw);
+                break;
+            
+            case 'nego':
+                bot.comandos.get('nego ney').executar(mensagem, gerenciadorErros, arg);
                 break;
         }
     }
