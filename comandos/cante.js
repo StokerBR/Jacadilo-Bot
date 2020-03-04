@@ -15,6 +15,7 @@ module.exports = {
                         connection.disconnect();
                     });
                 });
+                mensagem.channel.send('Vou cantar');
             }
         }
         catch(err){

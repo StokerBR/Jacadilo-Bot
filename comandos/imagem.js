@@ -1,11 +1,21 @@
 module.exports = {
     nome: 'imagem',
-    descrição: "envia uma imagem aleatória do termo de pesquisa inserido",
-    executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, sadYeehaw){
+    descrição: 'envia uma imagem aleatória sobre o termo de pesquisa inserido',
+    executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, jacadiloBotID, sadYeehaw){
         try{
+            let pessoa = mensagem.mentions.users.first();
             if(!arg[1]){
-               let pesquisa = "alligator";
-               imagem(pesquisa);
+                let pesquisa = "alligator";
+                imagem(pesquisa);
+             }
+             else if(arg[1] == 'jacadilo'){
+                mensagem.channel.send({files: ['./imagens/jaré.jpg']});
+             }
+            else if(pessoa){
+                let embed = new discord.RichEmbed();
+                    embed.setColor('#D00CD2');
+                    embed.setImage(pessoa.avatarURL);
+                mensagem.channel.send(embed);
             }
             else{
                 let fimPalavras = false;
@@ -43,8 +53,11 @@ module.exports = {
                         mensagem.channel.send(`Não encontrei nenhuma imagem sobre isso ${bot.emojis.get(sadYeehaw)}`);
                         return;
                     }
-    
-                    mensagem.channel.send(urls[Math.floor(Math.random() * urls.length)]);
+                    
+                    let embed = new discord.RichEmbed();
+                        embed.setColor('#D00CD2')
+                        embed.setImage(urls[Math.floor(Math.random() * urls.length)])
+                    mensagem.channel.send(embed);
                 });
             }
         }

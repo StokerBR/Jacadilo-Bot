@@ -3,7 +3,10 @@ module.exports = {
     descrição: "forneçe informação sobre o que for pedido",
     executar(mensagem, gerenciadorErros, arg, versão, stokerAgiota, jacadilo){
         try{
-            if(arg[1] == 'versão'){
+            if(!arg[1]){
+                mensagem.channel.send('O quê que você quer saber?');
+            }
+            if(arg[1] == 'versão' || arg[1] == 'versao'){
                 mensagem.channel.send('Estou na versão **' + versão + '**');
             }
             else if(arg[1] == 'criador'){
@@ -13,7 +16,7 @@ module.exports = {
                 mensagem.channel.send('Sim, eu sou o Jacadilo').then(mensagemEnviada => mensagemEnviada.react(jacadilo));
             }
             else{
-                mensagem.channel.send('O quê que você quer saber?');
+                mensagem.channel.send('Não sei te informar sobre isso');
             }
         }
         catch(err){
