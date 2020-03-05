@@ -1,6 +1,9 @@
 module.exports = {
     nome: '',
     descrição: '',
+    uso: '````',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg){
         try{
             

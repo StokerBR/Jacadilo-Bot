@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'crie chamada',
-    descrição: "cria uma chamada de vídeo para o canal de voz atual",
+    descrição: "Cria uma chamada de vídeo para o canal de voz atual",
+    uso: '``jacadilo crie chamada``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg){
         try{
             if(arg[1] == 'chamada'){

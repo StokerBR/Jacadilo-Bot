@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'vídeo',
-    descrição: "envia um vídeo do youtube aleatório sobre o termo de pesquisa inserido",
+    descrição: "Envia um vídeo do youtube aleatório sobre o termo(s) de pesquisa inserido",
+    uso: '``jacadilo vídeo <termo de pesquisa>``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg, bot, ytSearch, sadYeehaw){
         try{
             let pesquisa = mensagem.content.slice(15, mensagem.content.length);

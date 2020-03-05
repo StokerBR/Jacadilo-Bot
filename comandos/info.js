@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'info',
-    descrição: "forneçe informação sobre o que for pedido",
+    descrição: "Forneçe informação sobre o que for pedido",
+    uso: '``jacadilo info <argumento>``',
+    argumentos: '``versão``, ``criador``, ``jacadilo``',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg, versão, stokerAgiota, jacadilo){
         try{
             if(!arg[1]){

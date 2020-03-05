@@ -11,14 +11,16 @@ const bot = new discord.Client();
 const token = '';
 const versão = '0.2.4';
 const jacadiloBotID = "681083538107400222";
-const canalJacadiloID = "684268211675594753";
+const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
 const cooldownChame = new Set();
 
 //emojis
-const jacadilo = "682006794628759567"
-const stokerAgiota = "682039067231387669"
-const sadYeehaw = "684304867316990009";
+const jacadilo = "658869016269684786";
+const stokerAgiota = "660169909296431104";
+const sadYeehaw = "658862532085415940";
+const hmm = "658827196705800209";
+const angryKirby = "658858688701792276";
 
 //gerenciador de comandos
 bot.comandos = new discord.Collection();
@@ -84,7 +86,11 @@ bot.on('message', mensagem =>{
         let arg = mensagemMinusculo.substring(prefixo.length).split(" ");
 
         //comandos
-        switch(arg[0]){      
+        switch(arg[0]){
+            case 'comandos':
+                bot.comandos.get('comandos').executar(mensagem, gerenciadorErros, mensagemMinusculo, arg, discord, bot, prefixo, versão, hmm);
+                break;
+
             case 'jacadilo':
                 bot.comandos.get('jacadilo').executar(mensagem, gerenciadorErros, arg, bot, jacadilo);
                 break;
@@ -130,7 +136,7 @@ bot.on('message', mensagem =>{
                 break;
             
             case 'imite':
-                bot.comandos.get('imite').executar(mensagem, gerenciadorErros, arg);
+                bot.comandos.get('imite').executar(mensagem, gerenciadorErros, arg, angryKirby);
                 break;
             
             case 'análise':

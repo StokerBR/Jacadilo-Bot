@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'chame',
-    descrição: "envia uma mensagem direta para a pessoa que foi marcada falando que você está chamando ela. Também envia uma mensagem escrita por você, caso inserida, juntamente com o chamado",
+    descrição: "Envia uma mensagem direta para a pessoa que foi marcada falando que você está chamando ela. Também envia uma mensagem escrita por você, caso inserida, juntamente com o chamado",
+    uso: '``jacadilo chame @<pessoa>``, ``jacadilo chame @<pessoa> <mensagem>``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg, cooldownChame){
         try{
             var fimMensagemChamar = false;
