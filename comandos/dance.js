@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'dance',
-    descrição: "envia um gif dancando",
+    descrição: "Envia um gif dancando",
+    uso: '``jacadilo dance``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros){
         try{
             mensagem.channel.send({files: ['./gifs/dance.gif']});

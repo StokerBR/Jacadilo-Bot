@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'jacadilo',
-    descrição: "responde com o emoji jacadilo",
+    descrição: "Envia o emoji jacadilo",
+    uso: '``jacadilo jacadilo``, ``jacadilo jacadilo jacadilo``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg, bot, jacadilo){
         try{
             if(arg[1] == 'jacadilo'){

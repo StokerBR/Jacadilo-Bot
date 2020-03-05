@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'saia',
-    descrição: "sai do canal de voz",
+    descrição: "Sai do canal de voz",
+    uso: '``jacadilo saia``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros){
         try{
             if(!mensagem.guild.voiceConnection){

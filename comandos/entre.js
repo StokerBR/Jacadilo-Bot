@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'entre',
-    descrição: "entra no canal de voz que o usuário está",
+    descrição: "Entra no canal de voz que o usuário está",
+    uso: '``jacadilo entre``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros){
         try{
             if(!mensagem.member.voiceChannel){

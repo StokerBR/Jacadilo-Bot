@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'cante',
-    descrição: "toca 'interior crocodile alligator'",
+    descrição: 'Toca "interior crocodile alligator"',
+    uso: '``jacadilo cante``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, ytdl){
         try{
             if(!mensagem.member.voiceChannel){

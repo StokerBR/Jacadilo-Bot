@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'apague',
-    descrição: "apaga a quantidade determinada de mensagens (até 20)",
+    descrição: "Apaga a quantidade determinada de mensagens (até 20)",
+    uso: '``jacadilo apague <quantidade>``',
+    argumentos: '-',
+    permissãoNecessária: 'Apagar mensagens',
     executar(mensagem, gerenciadorErros, arg){
         try{
             if(mensagem.member.hasPermission("MANAGE_MESSAGES")){

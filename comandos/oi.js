@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'oi',
-    descrição: "responde 'eae'",
+    descrição: 'Responde "Eae"',
+    uso: '``jacadilo oi``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros){
         try{
             mensagem.reply('Eae');

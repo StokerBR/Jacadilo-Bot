@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'imagem',
-    descrição: 'envia uma imagem aleatória sobre o termo de pesquisa inserido',
+    descrição: 'Envia uma imagem aleatória sobre o termo(s) de pesquisa inserido',
+    uso: '``jacadilo imagem <termo de pesquisa>``',
+    argumentos: '-',
+    permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, jacadiloBotID, sadYeehaw){
         try{
             let pessoa = mensagem.mentions.users.first();
@@ -10,6 +13,10 @@ module.exports = {
              }
              else if(arg[1] == 'jacadilo'){
                 mensagem.channel.send({files: ['./imagens/jaré.jpg']});
+             }
+             else if(arg[1] == 'eneano'){
+                pesquisa = "torbjorn overwatch";
+                imagem(pesquisa);
              }
             else if(pessoa){
                 let embed = new discord.RichEmbed();

@@ -1,6 +1,9 @@
 module.exports = {
     nome: 'spam',
-    descrição: 'envia "jacadilo" periodicamente',
+    descrição: 'Envia "jacadilo" periodicamente',
+    uso: '``jacadilo spam <argumento>``',
+    argumentos: '``ligado``, ``desligado``, ``ligado lento``',
+    permissãoNecessária: 'Administrador',
     executar(mensagem, gerenciadorErros, arg, spam){
         try{
             if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && mensagem.author.id == "681083538107400222"){
