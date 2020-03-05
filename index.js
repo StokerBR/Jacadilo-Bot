@@ -8,8 +8,8 @@ const ytSearch = require('yt-search');
 
 //constantes
 const bot = new discord.Client();
-const token = '';
-const versão = '0.2.4';
+const token = 'NjgxMDgzNTM4MTA3NDAwMjIy.XlNyxw.J2U6bcdIHiUWJafhQ98eFXCmeQI';
+const versão = '1.0.0';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
