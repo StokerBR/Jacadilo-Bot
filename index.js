@@ -10,7 +10,7 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.1';
+const versão = '1.0.2';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -27,6 +27,9 @@ const thonk = "658856199185235991";
 const ohYeahWoo = "658854734748319766";
 const cursed = "658859459711467581";
 const kellen = "310502299376156673";
+const partyBlob = "660169111048945725";
+const dab = "658863094658760715";
+const jonas = "310502384680042496";
 
 //gerenciador de comandos
 bot.comandos = new discord.Collection();
@@ -76,8 +79,15 @@ bot.on('message', mensagem =>{
                 mensagem.delete(0);
                 mensagem.reply('tá ficando bobo?\nVocê só pode enviar "jacadilo" nesse canal').then(mensagemEnviada => mensagemEnviada.delete(5000));
             }
+            //contador de jacadilos
             else if(mensagem.author.id!=jacadiloBotID){
                 quickdb.add(`canalJacadilo_${mensagem.author.id}`, 1);
+                //jacadilos lendários
+                let lendário = Math.floor(Math.random() * 100) + 1;
+                if(lendário == 1){
+                    quickdb.add(`jacadilosLendários_${mensagem.author.id}`, 1);
+                    mensagem.reply(`Uau, um **Jacadilo Lendário**! ${bot.emojis.get(dab)}`).then(mensagemEnviada => mensagemEnviada.delete(10000));
+                }
             }
             return;
         }
@@ -109,7 +119,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'dance':
-                bot.comandos.get('dance').executar(mensagem, gerenciadorErros);
+                bot.comandos.get('dance').executar(mensagem, gerenciadorErros, bot, partyBlob);
                 break;
 
             case 'info':
@@ -171,7 +181,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'quantidade':
-                bot.comandos.get('quantidade').executar(mensagem, gerenciadorErros, quickdb, bot, canalJacadiloID, angryKirby, laranjo, thonk, kellen, ohYeahWoo, cursed);
+                bot.comandos.get('quantidade').executar(mensagem, gerenciadorErros, arg, quickdb, bot, canalJacadiloID, jacadiloBotID, jonas, angryKirby, laranjo, thonk, kellen, ohYeahWoo, cursed);
                 break;
         }
     }
