@@ -5,11 +5,12 @@ const ytdl = require('ytdl-core');
 const cheerio = require('cheerio');
 const request = require('request');
 const ytSearch = require('yt-search');
+const quickdb = require('quick.db');
 
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '0.2.4';
+const versão = '1.0.1';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -21,6 +22,11 @@ const stokerAgiota = "660169909296431104";
 const sadYeehaw = "658862532085415940";
 const hmm = "658827196705800209";
 const angryKirby = "658858688701792276";
+const laranjo = "658864307324321793";
+const thonk = "658856199185235991";
+const ohYeahWoo = "658854734748319766";
+const cursed = "658859459711467581";
+const kellen = "310502299376156673";
 
 //gerenciador de comandos
 bot.comandos = new discord.Collection();
@@ -69,6 +75,9 @@ bot.on('message', mensagem =>{
             if(mensagem.author.id != jacadiloBotID && mensagemMinusculo != 'jacadilo' && mensagemMinusculo != 'jacadilo '){
                 mensagem.delete(0);
                 mensagem.reply('tá ficando bobo?\nVocê só pode enviar "jacadilo" nesse canal').then(mensagemEnviada => mensagemEnviada.delete(5000));
+            }
+            else if(mensagem.author.id!=jacadiloBotID){
+                quickdb.add(`canalJacadilo_${mensagem.author.id}`, 1);
             }
             return;
         }
@@ -159,6 +168,10 @@ bot.on('message', mensagem =>{
             
             case 'nego':
                 bot.comandos.get('nego ney').executar(mensagem, gerenciadorErros, arg);
+                break;
+
+            case 'quantidade':
+                bot.comandos.get('quantidade').executar(mensagem, gerenciadorErros, quickdb, bot, canalJacadiloID, angryKirby, laranjo, thonk, kellen, ohYeahWoo, cursed);
                 break;
         }
     }
