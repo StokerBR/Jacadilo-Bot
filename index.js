@@ -10,7 +10,7 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.2';
+const versão = '1.0.3';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -106,6 +106,10 @@ bot.on('message', mensagem =>{
 
         //comandos
         switch(arg[0]){
+            case 'reinicie':
+                bot.comandos.get('reinicie').executar(mensagem, gerenciadorErros, bot, token);
+                break;
+
             case 'comandos':
                 bot.comandos.get('comandos').executar(mensagem, gerenciadorErros, mensagemMinusculo, arg, discord, bot, prefixo, versão, hmm);
                 break;

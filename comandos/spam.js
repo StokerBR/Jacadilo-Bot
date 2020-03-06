@@ -2,7 +2,7 @@ module.exports = {
     nome: 'spam',
     descrição: 'Envia "jacadilo" periodicamente',
     uso: '``jacadilo spam <argumento>``',
-    argumentos: '``ligado``, ``desligado``, ``ligado lento``',
+    argumentos: '``ligado``, ``desligado``, ``ligado lento``, ``status``',
     permissãoNecessária: 'Administrador',
     executar(mensagem, gerenciadorErros, arg, spam){
         try{
@@ -20,7 +20,18 @@ module.exports = {
                 }
             }
 
-            if(mensagem.member.hasPermission("ADMINISTRATOR") && arg != null){
+            if(arg && arg[1] == 'status'){
+                if(spam == 0){
+                    mensagem.channel.send('O spam está desligado');
+                }
+                else if(spam == 1){
+                    mensagem.channel.send('O spam está ligado');
+                }
+                else if(spam == 2){
+                    mensagem.channel.send('O spam está ligado no modo lento');
+                }
+            }
+            if(mensagem.member.hasPermission("ADMINISTRATOR") && arg){
                 if(arg[1] == 'ligado'){
                     if(arg[2] == 'lento'){
                         spam = 2;
@@ -38,7 +49,7 @@ module.exports = {
                     return (spam);
                 }
             }
-            else if(arg != null){
+            else if(arg){
                 mensagem.channel.send('Você não tem permissão pra ligar/desligar o spam 🔒');
             }
         }
