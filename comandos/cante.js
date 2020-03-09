@@ -4,7 +4,7 @@ module.exports = {
     uso: '``jacadilo cante``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros, ytdl){
+    executar(mensagem, gerenciadorErros, sozinhoCanalDeVoz, ytdl){
         try{
             if(!mensagem.member.voiceChannel){
                 mensagem.channel.send('Você precisa estar em um canal de voz pra me ouvir cantando');
@@ -19,6 +19,10 @@ module.exports = {
                     });
                 });
                 mensagem.channel.send('Vou cantar');
+                
+                setTimeout(() => {
+                    sozinhoCanalDeVoz(mensagem);
+                }, 60000);
             }
         }
         catch(err){

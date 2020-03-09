@@ -10,7 +10,7 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.3';
+const versão = '1.0.4';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -46,6 +46,22 @@ function gerenciadorErros (err, mensagem){
     bot.users.get("277157599378669568").send('ERRO: ```' + err + '```');
 }
 
+//sair do canal de voz se ficar sozinho nele
+function sozinhoCanalDeVoz (mensagem){
+    if(mensagem.guild.voiceConnection){
+        canalDeVoz = mensagem.guild.voiceConnection.channel;
+        if(canalDeVoz.members.size == 1){
+            canalDeVoz.leave();
+            mensagem.channel.send(`Saí do canal de voz ${canalDeVoz} porque fiquei sozinho nele`);
+        }
+        else{
+            setTimeout(() => {
+                sozinhoCanalDeVoz(mensagem);
+            }, 60000);
+        }
+    }
+}
+
 //variáveis globais
 var spam = 0;
 
@@ -61,6 +77,12 @@ bot.on('ready', () =>{
 //mensagens
 bot.on('message', mensagem =>{
     try{
+        //se a mensagem for enviada no chat privado
+        if(!mensagem.guild && mensagem.author.id != jacadiloBotID){
+            mensagem.channel.send('Quem você acha que é pra ter o direito de me mandar mensagem?');
+            return;
+        }
+
         //para minsúsculo
         mensagemMinusculo = mensagem.content.toLowerCase();
 
@@ -147,7 +169,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'entre':
-                bot.comandos.get('entre').executar(mensagem, gerenciadorErros);
+                bot.comandos.get('entre').executar(mensagem, gerenciadorErros, sozinhoCanalDeVoz);
                 break;
 
             case 'saia':
@@ -155,7 +177,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'cante':
-                bot.comandos.get('cante').executar(mensagem, gerenciadorErros, ytdl);
+                bot.comandos.get('cante').executar(mensagem, gerenciadorErros, sozinhoCanalDeVoz, ytdl);
                 break;
             
             case 'imite':
