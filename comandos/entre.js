@@ -4,7 +4,7 @@ module.exports = {
     uso: '``jacadilo entre``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros){
+    executar(mensagem, gerenciadorErros, sozinhoCanalDeVoz){
         try{
             if(!mensagem.member.voiceChannel){
                 mensagem.channel.send('Você tem que entrar em um canal de voz pra isso');
@@ -12,6 +12,10 @@ module.exports = {
             else{
                 mensagem.member.voiceChannel.join().then(connection => {});
                 mensagem.channel.send('Entrei');
+                
+                setTimeout(() => {
+                    sozinhoCanalDeVoz(mensagem);
+                }, 60000);
             }
         }
         catch(err){
