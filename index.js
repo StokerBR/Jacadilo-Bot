@@ -10,11 +10,17 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.4';
+const versão = '1.0.5';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
 const cooldownChame = new Set();
+
+//cargos
+const jacadilos10ID = "686553478935347221";
+const jacadilos100ID = "686553691985019041";
+const jacadilos1000ID = "686553760859684874";
+const jacadilos10000ID = "686553832708243487";
 
 //emojis
 const jacadilo = "658869016269684786";
@@ -46,21 +52,48 @@ function gerenciadorErros (err, mensagem){
     bot.users.get("277157599378669568").send('ERRO: ```' + err + '```');
 }
 
-//sair do canal de voz se ficar sozinho nele
-function sozinhoCanalDeVoz (mensagem){
-    if(mensagem.guild.voiceConnection){
-        canalDeVoz = mensagem.guild.voiceConnection.channel;
-        if(canalDeVoz.members.size == 1){
-            canalDeVoz.leave();
-            mensagem.channel.send(`Saí do canal de voz ${canalDeVoz} porque fiquei sozinho nele`);
-        }
-        else{
-            setTimeout(() => {
-                sozinhoCanalDeVoz(mensagem);
-            }, 60000);
+//funções
+    //sair do canal de voz se ficar sozinho nele
+    function sozinhoCanalDeVoz (mensagem){
+        if(mensagem.guild.voiceConnection){
+            canalDeVoz = mensagem.guild.voiceConnection.channel;
+            if(canalDeVoz.members.size == 1){
+                canalDeVoz.leave();
+                mensagem.channel.send(`Saí do canal de voz ${canalDeVoz} porque fiquei sozinho nele`);
+            }
+            else{
+                setTimeout(() => {
+                    sozinhoCanalDeVoz(mensagem);
+                }, 60000);
+            }
         }
     }
-}
+
+    //dar cargo de jacadilos
+    function cargoJacadilos (mensagem){
+        let jacadilos = quickdb.fetch(`canalJacadilo_${mensagem.author.id}`);
+
+        let jacadilos10 = mensagem.guild.roles.get(jacadilos10ID);
+        let jacadilos100 = mensagem.guild.roles.get(jacadilos100ID);
+        let jacadilos1000 = mensagem.guild.roles.get(jacadilos1000ID);
+        let jacadilos10000 = mensagem.guild.roles.get(jacadilos10000ID);
+
+        if(jacadilos >= 10 && jacadilos < 100 && !mensagem.member.roles.has(jacadilos10.id)){
+            mensagem.member.addRole(jacadilos10).catch(console.error);
+        }
+        else if(jacadilos >= 100 && jacadilos < 1000 && !mensagem.member.roles.has(jacadilos100.id)){
+            mensagem.member.removeRole(jacadilos10).catch(console.error);
+            mensagem.member.addRole(jacadilos100).catch(console.error);
+        }
+        else if(jacadilos >= 1000 && jacadilos < 10000 && !mensagem.member.roles.has(jacadilos1000.id)){
+            mensagem.member.removeRole(jacadilos100).catch(console.error);
+            mensagem.member.addRole(jacadilos1000).catch(console.error);
+        }
+        else if(jacadilos >= 10000 && !mensagem.member.roles.has(jacadilos10000.id)){
+            mensagem.member.removeRole(jacadilos1000).catch(console.error);
+            mensagem.member.addRole(jacadilos10000).catch(console.error);
+        }
+    }
 
 //variáveis globais
 var spam = 0;
@@ -104,6 +137,8 @@ bot.on('message', mensagem =>{
             //contador de jacadilos
             else if(mensagem.author.id!=jacadiloBotID){
                 quickdb.add(`canalJacadilo_${mensagem.author.id}`, 1);
+                cargoJacadilos(mensagem);
+
                 //jacadilos lendários
                 let lendário = Math.floor(Math.random() * 100) + 1;
                 if(lendário == 1){
