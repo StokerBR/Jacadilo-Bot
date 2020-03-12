@@ -4,7 +4,7 @@ module.exports = {
     uso: '``jacadilo spam <argumento>``',
     argumentos: '``ligado``, ``desligado``, ``ligado lento``, ``status``',
     permissãoNecessária: 'Administrador',
-    executar(mensagem, gerenciadorErros, arg, spam){
+    executar(mensagem, gerenciadorErros, arg, jacadiloBotID, spam){
         try{
             if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && mensagem.author.id == "681083538107400222"){
                 if(spam == 1){
@@ -31,7 +31,11 @@ module.exports = {
                     mensagem.channel.send('O spam está ligado no modo lento');
                 }
             }
-            if(mensagem.member.hasPermission("ADMINISTRATOR") && arg){
+
+            if(mensagem.author.id == jacadiloBotID){
+                mensagem.channel.send('Você realmente acha que vai conseguir burlar o sistema assim?');
+            }
+            else if(mensagem.member.hasPermission("ADMINISTRATOR") && arg){
                 if(arg[1] == 'ligado'){
                     if(arg[2] == 'lento'){
                         spam = 2;

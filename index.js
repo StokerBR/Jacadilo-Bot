@@ -10,7 +10,7 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.5';
+const versão = '1.0.6';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -164,7 +164,7 @@ bot.on('message', mensagem =>{
         //comandos
         switch(arg[0]){
             case 'reinicie':
-                bot.comandos.get('reinicie').executar(mensagem, gerenciadorErros, bot, token);
+                bot.comandos.get('reinicie').executar(mensagem, gerenciadorErros, bot, token, jacadiloBotID);
                 break;
 
             case 'comandos':
@@ -188,11 +188,11 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'spam':
-                spam = bot.comandos.get('spam').executar(mensagem, gerenciadorErros, arg, spam);
+                spam = bot.comandos.get('spam').executar(mensagem, gerenciadorErros, jacadiloBotID, arg, spam);
                 break;
 
             case 'apague':
-                bot.comandos.get('apague').executar(mensagem, gerenciadorErros, arg);
+                bot.comandos.get('apague').executar(mensagem, gerenciadorErros, arg, jacadiloBotID);
                 break;
 
             case 'chame':
