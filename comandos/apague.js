@@ -4,9 +4,12 @@ module.exports = {
     uso: '``jacadilo apague <quantidade>``',
     argumentos: '-',
     permissãoNecessária: 'Apagar mensagens',
-    executar(mensagem, gerenciadorErros, arg){
+    executar(mensagem, gerenciadorErros, arg, jacadiloBotID){
         try{
-            if(mensagem.member.hasPermission("MANAGE_MESSAGES")){
+            if(mensagem.author.id == jacadiloBotID){
+                mensagem.channel.send('Você realmente acha que vai conseguir burlar o sistema assim?');
+            }
+            else if(mensagem.member.hasPermission("MANAGE_MESSAGES")){
                 if(!arg[1]){
                     mensagem.channel.send('Como vou saber quantas mensagens é pra apagar se você não me falar?');
                 }
