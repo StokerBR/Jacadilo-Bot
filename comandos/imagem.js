@@ -1,42 +1,47 @@
 module.exports = {
     nome: 'imagem',
-    descrição: 'Envia uma imagem aleatória sobre o termo(s) de pesquisa inserido',
-    uso: '``jacadilo imagem <termo de pesquisa>``',
+    descrição: 'Envia uma imagem aleatória sobre o termo(s) de pesquisa inserido, ou a foto de perfil da pessoa marcada',
+    uso: '``jacadilo imagem <termo de pesquisa>``, ``jacadilo imagem @<pessoa>``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, jacadiloBotID, sadYeehaw){
+    executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, cooldownImagem, sadYeehaw){
         try{
             let pessoa = mensagem.mentions.users.first();
-            if(!arg[1]){
-                let pesquisa = "alligator";
-                imagem(pesquisa);
-             }
-             else if(arg[1] == 'jacadilo'){
-                mensagem.channel.send({files: ['./imagens/jaré.jpg']});
-             }
-             else if(arg[1] == 'eneano'){
-                pesquisa = "torbjorn overwatch";
-                imagem(pesquisa);
-             }
-            else if(pessoa){
-                let embed = new discord.RichEmbed();
-                    embed.setColor('#D00CD2');
-                    embed.setImage(pessoa.avatarURL);
-                mensagem.channel.send(embed);
+            if(cooldownImagem.has(mensagem.author.id)){
+                mensagem.channel.send('Calma aí pô. (Você tá buscando imagens rápido demais, tente de novo em 5 segundos) ⏲️');
             }
             else{
-                let fimPalavras = false;
-                let pesquisa = "";
-                for(let i = 1; fimPalavras == false; i++){
-                    if(arg[i]){
-                        pesquisa = pesquisa + arg[i] + "+";
-                    }
-                    else{
-                        fimPalavras = true;
-                    }
+                if(!arg[1] && !arg[2]){
+                    let pesquisa = "alligator";
+                    imagem(pesquisa);
+                 }
+                 else if(arg[1] == 'jacadilo'){
+                    mensagem.channel.send({files: ['./imagens/jaré.jpg']});
+                 }
+                 else if(arg[1] == 'eneano'){
+                    pesquisa = "torbjorn overwatch";
+                    imagem(pesquisa);
+                 }
+                else if(pessoa){
+                    let embed = new discord.RichEmbed();
+                        embed.setColor('#D00CD2');
+                        embed.setImage(pessoa.avatarURL);
+                    mensagem.channel.send(embed);
                 }
-                pesquisa = pesquisa.slice(0, -1);
-                imagem(pesquisa);
+                else{
+                    let pesquisa = mensagem.content.slice(16, mensagem.content.length);
+                    for(let i = 0; i <= pesquisa.length; i++){
+                        if(pesquisa[i] == ' '){
+                            pesquisa[i] = '+';
+                        }
+                    }
+                    imagem(pesquisa);
+                }
+                //inicia cooldown
+                cooldownImagem.add(mensagem.author.id);
+                setTimeout(() => {
+                    cooldownImagem.delete(mensagem.author.id);
+                }, 5000);
             }
 
             function imagem(pesquisa){
