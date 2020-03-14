@@ -4,7 +4,7 @@ module.exports = {
     uso: '``jacadilo chame @<pessoa>``, ``jacadilo chame @<pessoa> <mensagem>``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros, arg, cooldownChame){
+    executar(mensagem, gerenciadorErros, arg, cooldownChame, jacadiloBotID){
         try{
             var fimMensagemChamar = false;
             var pessoa = mensagem.mentions.users.first();
@@ -13,11 +13,14 @@ module.exports = {
             if(mensagem.mentions.everyone){
                 mensagem.channel.send('Só posso chamar uma pessoa de cada vez');
             }
+            else if(arg[1] == 'jacadilo'){
+                mensagem.channel.send('Eu já tô aqui');
+            }
             else if(!arg[1]){
                 mensagem.channel.send('Tá carente?');
             }
             else if(pessoa){
-                if(pessoa.id == '681083538107400222'){
+                if(pessoa.id == jacadiloBotID){
                     mensagem.channel.send('Eu já tô aqui');
                 }
                 else if(cooldownChame.has(autor_e_pessoa)){

@@ -10,11 +10,12 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.6';
+const versão = '1.0.7';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
 const cooldownChame = new Set();
+const cooldownImagem = new Set();
 
 //cargos
 const jacadilos10ID = "686553478935347221";
@@ -82,16 +83,22 @@ function gerenciadorErros (err, mensagem){
             mensagem.member.addRole(jacadilos10).catch(console.error);
         }
         else if(jacadilos >= 100 && jacadilos < 1000 && !mensagem.member.roles.has(jacadilos100.id)){
-            mensagem.member.removeRole(jacadilos10).catch(console.error);
             mensagem.member.addRole(jacadilos100).catch(console.error);
+            setTimeout(() => {
+                mensagem.member.removeRole(jacadilos10).catch(console.error);
+            }, 5000);
         }
         else if(jacadilos >= 1000 && jacadilos < 10000 && !mensagem.member.roles.has(jacadilos1000.id)){
-            mensagem.member.removeRole(jacadilos100).catch(console.error);
             mensagem.member.addRole(jacadilos1000).catch(console.error);
+            setTimeout(() => {
+                mensagem.member.removeRole(jacadilos100).catch(console.error);
+            }, 5000);
         }
         else if(jacadilos >= 10000 && !mensagem.member.roles.has(jacadilos10000.id)){
-            mensagem.member.removeRole(jacadilos1000).catch(console.error);
             mensagem.member.addRole(jacadilos10000).catch(console.error);
+            setTimeout(() => {
+                mensagem.member.removeRole(jacadilos1000).catch(console.error);
+            }, 5000);
         }
     }
 
@@ -196,7 +203,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'chame':
-                bot.comandos.get('chame').executar(mensagem, gerenciadorErros, arg, cooldownChame);
+                bot.comandos.get('chame').executar(mensagem, gerenciadorErros, arg, cooldownChame, jacadiloBotID);
                 break;
 
             case 'crie':
@@ -227,7 +234,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'imagem':
-                bot.comandos.get('imagem').executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, jacadiloBotID, sadYeehaw);
+                bot.comandos.get('imagem').executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, cooldownImagem, sadYeehaw);
                 break;
 
             case 'vídeo':
