@@ -10,7 +10,7 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.7';
+const versão = '1.0.8';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -250,6 +250,10 @@ bot.on('message', mensagem =>{
 
             case 'quantidade':
                 bot.comandos.get('quantidade').executar(mensagem, gerenciadorErros, arg, quickdb, bot, canalJacadiloID, jacadiloBotID, jonas, angryKirby, laranjo, thonk, kellen, ohYeahWoo, cursed);
+                break;
+
+            case 'buzzfeed':
+                bot.comandos.get('buzzfeed').executar(mensagem, gerenciadorErros, request, cheerio);
                 break;
         }
     }
