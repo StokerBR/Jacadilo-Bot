@@ -2,7 +2,7 @@ module.exports = {
     nome: 'imite',
     descrição: "Imita uma pessoa ou uma frase",
     uso: '``jacadilo imite <argumento>``, ``jacadilo imite isso <frase>``',
-    argumentos: '``mudo``, ``jacadilo``, ``sombra``, ``maiki``, ``mãe do edésio``, ``mãe do moraes``',
+    argumentos: '``mudo``, ``jacadilo``, ``sombra``, ``mãe do edésio``, ``mãe do moraes``',
     permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg, angryKirby){
         try{
@@ -15,9 +15,6 @@ module.exports = {
             }
             else if(arg[1] == 'sombra'){
                 mensagem.channel.send('¿QUÉ OOOONNDA?');
-            }
-            else if(arg[1] == 'maiki' || arg[1] == 'maiki021'){
-                mensagem.channel.send('Iae galera, beleza? Como que cês tão seus louco da cabeça?');
             }
             else if(arg[1] == 'mãe' || arg[1] == 'mae'){
                 if(arg[2] == 'do'){

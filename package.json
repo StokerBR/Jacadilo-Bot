@@ -1,6 +1,6 @@
 {
   "name": "jacadilo-bot",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,11 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "discord.js": "^11.5.1",
+    "discord.js": "^11.6.4",
     "opusscript": "0.0.7",
-    "quick.db": "^7.0.0-b22",
+    "quick.db": "^7.1.1",
     "request": "^2.88.2",
     "yt-search": "^1.1.2",
-    "ytdl-core": "^2.0.0"
+    "ytdl-core": "^2.1.1"
   }
 }

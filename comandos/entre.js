@@ -11,8 +11,9 @@ module.exports = {
             }
             else{
                 mensagem.member.voiceChannel.join().then(connection => {});
-                mensagem.channel.send('Entrei');
                 
+                mensagem.channel.send('Entrei');
+
                 setTimeout(() => {
                     sozinhoCanalDeVoz(mensagem);
                 }, 60000);

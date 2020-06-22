@@ -4,7 +4,7 @@ module.exports = {
     uso: '``jacadilo quantidade``, ``jacadilo quanditade @<pessoa>``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros, arg, quickdb, bot, canalJacadiloID, jacadiloBotID, jonas, angryKirby, laranjo, thonk, kellen, ohYeahWoo, cursed){
+    executar(mensagem, gerenciadorErros, arg, quickdb, bot, canalJacadiloID, jacadiloBotID, jonas, angryKirby, laranjo, thonk, kellen, groovin, cursed){
         try{
             let marcou = true;
             let pessoa = mensagem.mentions.members.first();
@@ -44,7 +44,7 @@ module.exports = {
                     mensagem.channel.send(`Uau, você já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)} ${bot.emojis.get(kellen)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
                 else if(quantidade >= 1000 && quantidade <10000){
-                    mensagem.channel.send(`Que?!?! Você já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, isso que dá não ter nada pra fazer ${bot.emojis.get(ohYeahWoo)}\nJacadilos lendários: **${jacadilosLendários}**`);
+                    mensagem.channel.send(`Que?!?! Você já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, isso que dá não ter nada pra fazer ${bot.emojis.get(groovin)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
                 else if(quantidade >= 10000){
                     mensagem.channel.send(`Como assim você já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}???! Você realmente não tem vida ${bot.emojis.get(cursed)}\nJacadilos lendários: **${jacadilosLendários}**`);
@@ -64,7 +64,7 @@ module.exports = {
                     mensagem.channel.send(`Uau, ${pessoa} já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)} ${bot.emojis.get(kellen)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
                 else if(quantidade >= 1000 && quantidade <10000){
-                    mensagem.channel.send(`Que?!?! ${pessoa} já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, isso que dá não ter nada pra fazer ${bot.emojis.get(ohYeahWoo)}\nJacadilos lendários: **${jacadilosLendários}**`);
+                    mensagem.channel.send(`Que?!?! ${pessoa} já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, isso que dá não ter nada pra fazer ${bot.emojis.get(groovin)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
                 else if(quantidade >= 10000){
                     mensagem.channel.send(`Como assim ${pessoa} já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}???! Ele/ela realmente não tem vida ${bot.emojis.get(cursed)}\nJacadilos lendários: **${jacadilosLendários}**`);
