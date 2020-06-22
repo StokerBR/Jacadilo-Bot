@@ -4,18 +4,21 @@ module.exports = {
     uso: '``jacadilo cante``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros, sozinhoCanalDeVoz, ytdl){
+    executar(mensagem, gerenciadorErros, sozinhoCanalDeVoz, ytdl, statusCante){
         try{
             if(!mensagem.member.voiceChannel){
                 mensagem.channel.send('Você precisa estar em um canal de voz pra me ouvir cantando');
             }
             else{
                 mensagem.member.voiceChannel.join().then(function(connection){
-                    var link = "https://youtu.be/I7TUr047h7o"
-                    var expedidor = connection.playStream(ytdl(link));
-        
+                    var link = "https://youtu.be/T1vlU5d5VNg"
+                    var expedidor = connection.playStream(ytdl(link, {filter: "audioonly"}));
+                    
+                    statusCante.cantando = true;
+                    statusCante.canal = mensagem.member.voiceChannel;
+                    
                     expedidor.on('end', function(){
-                        connection.disconnect();
+                        statusCante.cantando = false;
                     });
                 });
                 mensagem.channel.send('Vou cantar');

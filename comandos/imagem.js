@@ -8,7 +8,7 @@ module.exports = {
         try{
             let pessoa = mensagem.mentions.users.first();
             if(cooldownImagem.has(mensagem.author.id)){
-                mensagem.channel.send('Calma aí pô. (Você tá buscando imagens rápido demais, tente de novo em 5 segundos) ⏲️');
+                mensagem.channel.send('Calma aí pô. (Você tá buscando imagens rápido demais, tente de novo em 10 segundos) ⏲️');
             }
             else{
                 if(!arg[1] && !arg[2]){
@@ -41,7 +41,7 @@ module.exports = {
                 cooldownImagem.add(mensagem.author.id);
                 setTimeout(() => {
                     cooldownImagem.delete(mensagem.author.id);
-                }, 5000);
+                }, 10000);
             }
 
             function imagem(pesquisa){

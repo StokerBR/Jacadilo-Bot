@@ -10,12 +10,13 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.8';
+const versão = '1.0.9';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
 const cooldownChame = new Set();
 const cooldownImagem = new Set();
+const statusCante = {cantando: false, canal: 0};
 
 //cargos
 const jacadilos10ID = "686553478935347221";
@@ -31,7 +32,7 @@ const hmm = "658827196705800209";
 const angryKirby = "658858688701792276";
 const laranjo = "658864307324321793";
 const thonk = "658856199185235991";
-const ohYeahWoo = "658854734748319766";
+const groovin = "658854525972643881";
 const cursed = "658859459711467581";
 const kellen = "310502299376156673";
 const partyBlob = "660169111048945725";
@@ -219,7 +220,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'cante':
-                bot.comandos.get('cante').executar(mensagem, gerenciadorErros, sozinhoCanalDeVoz, ytdl);
+                bot.comandos.get('cante').executar(mensagem, gerenciadorErros, sozinhoCanalDeVoz, ytdl, statusCante);
                 break;
             
             case 'imite':
@@ -249,11 +250,15 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'quantidade':
-                bot.comandos.get('quantidade').executar(mensagem, gerenciadorErros, arg, quickdb, bot, canalJacadiloID, jacadiloBotID, jonas, angryKirby, laranjo, thonk, kellen, ohYeahWoo, cursed);
+                bot.comandos.get('quantidade').executar(mensagem, gerenciadorErros, arg, quickdb, bot, canalJacadiloID, jacadiloBotID, jonas, angryKirby, laranjo, thonk, kellen, groovin, cursed);
                 break;
 
             case 'buzzfeed':
                 bot.comandos.get('buzzfeed').executar(mensagem, gerenciadorErros, request, cheerio);
+                break;
+            
+            case 'calado':
+                bot.comandos.get('calado').executar(mensagem, gerenciadorErros, ytdl, statusCante);
                 break;
         }
     }
