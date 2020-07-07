@@ -10,12 +10,13 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.0.9';
+const versão = '1.0.10';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
 const cooldownChame = new Set();
 const cooldownImagem = new Set();
+const cooldownCopypaste = new Set();
 const statusCante = {cantando: false, canal: 0};
 
 //cargos
@@ -259,6 +260,10 @@ bot.on('message', mensagem =>{
             
             case 'calado':
                 bot.comandos.get('calado').executar(mensagem, gerenciadorErros, ytdl, statusCante);
+                break;
+
+            case 'copypaste':
+                bot.comandos.get('copypaste').executar(mensagem, gerenciadorErros, fs, bot, cooldownCopypaste, laranjo);
                 break;
         }
     }
