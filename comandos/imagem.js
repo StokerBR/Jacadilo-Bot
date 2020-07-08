@@ -6,9 +6,13 @@ module.exports = {
     permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, cooldownImagem, sadYeehaw){
         try{
+            let tempoCooldown = 10;
+            let autor = mensagem.author.id;
             let pessoa = mensagem.mentions.users.first();
-            if(cooldownImagem.has(mensagem.author.id)){
-                mensagem.channel.send('Calma aí pô. (Você tá buscando imagens rápido demais, tente de novo em 10 segundos) ⏲️');
+            if(cooldownImagem.has(autor)){
+                let tempoRestante = tempoCooldown - cooldownImagem.autor;
+
+                mensagem.channel.send(`Calma aí pô. (Você tá buscando imagens rápido demais, tente de novo em ${tempoRestante} seg) ⏲️`);
             }
             else{
                 if(!arg[1] && !arg[2]){
@@ -37,11 +41,19 @@ module.exports = {
                     }
                     imagem(pesquisa);
                 }
+                
                 //inicia cooldown
-                cooldownImagem.add(mensagem.author.id);
-                setTimeout(() => {
-                    cooldownImagem.delete(mensagem.author.id);
-                }, 10000);
+                cooldownImagem.add(autor);
+                cooldownImagem.autor = 0;
+
+                let timer = setInterval(() => {
+                    cooldownImagem.autor += 1;
+
+                    if(cooldownImagem.autor == tempoCooldown){
+                        cooldownImagem.delete(autor);
+                        clearInterval(timer);
+                    }
+                }, 1000);
             }
 
             function imagem(pesquisa){
