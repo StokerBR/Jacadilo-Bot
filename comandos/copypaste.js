@@ -6,9 +6,21 @@ module.exports = {
     permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, fs, bot, cooldownCopypaste, laranjo){
         try{
+            let tempoCooldown = 300;
             let autor = mensagem.author.id;
             if(cooldownCopypaste.has(autor)){
-                mensagem.channel.send("Calma lá amigão, só vou mandar outro copypaste em 5 min ⏲️");
+                let tempoRestante = tempoCooldown - cooldownCopypaste.autor;
+
+                let tempoRestanteMin = Math.trunc(tempoRestante/60);
+                
+                let tempoRestanteSeg = tempoRestante - (tempoRestanteMin * 60);
+
+                if(tempoRestante >= 60){
+                    mensagem.channel.send(`Calma lá amigão, só vou mandar outro copypaste em ${tempoRestanteMin} min e ${tempoRestanteSeg} seg ⏲️`);
+                }
+                else{
+                    mensagem.channel.send(`Calma lá amigão, só vou mandar outro copypaste em ${tempoRestante} seg ⏲️`);
+                }
             }
             else{
                 let decadencia = "680614291581305008";
@@ -25,17 +37,20 @@ module.exports = {
                 
                     mensagem.channel.send(texto);
                 }
+
+                //inicia cooldown
+                cooldownCopypaste.add(autor);
+                cooldownCopypaste.autor = 0;
+
+                let timer = setInterval(() => {
+                    cooldownCopypaste.autor += 1;                   
+                    
+                    if (cooldownCopypaste.autor == tempoCooldown){
+                        cooldownCopypaste.delete(autor);
+                        clearInterval(timer);
+                    }
+                }, 1000);
             }
-            //inicia cooldown
-            cooldownCopypaste.add(autor);
-                setTimeout(() => {
-                    cooldownCopypaste.delete(autor);
-                }, 300000);
-            
-            /*
-            cooldownCopypaste.add(autor);
-            cooldownCopypaste.autor = 10;
-            console.log(cooldownCopypaste.autor);*/
         }
         catch(err){
             gerenciadorErros(err, mensagem);

@@ -6,6 +6,7 @@ module.exports = {
     permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, arg, cooldownChame, jacadiloBotID){
         try{
+            let tempoCooldown = 60;
             var fimMensagemChamar = false;
             var pessoa = mensagem.mentions.users.first();
             var autor = mensagem.author;
@@ -24,7 +25,9 @@ module.exports = {
                     mensagem.channel.send('Eu já tô aqui');
                 }
                 else if(cooldownChame.has(autor_e_pessoa)){
-                    mensagem.channel.send('Não, kk. (Você já chamou essa pessoa recentemente, tente de novo em 30 segundos) ⏲️');
+                    tempoRestante = tempoCooldown - cooldownChame.autor_e_pessoa;
+
+                    mensagem.channel.send(`Não, kk. (Você já chamou essa pessoa recentemente, tente de novo em ${tempoRestante} seg) ⏲️`);
                 }
                 else{
                     if(!arg[2]){
@@ -44,11 +47,19 @@ module.exports = {
                         pessoa.send(mensagem + '"');
                     }
                     mensagem.channel.send('Chamei').then(mensagemEnviada => mensagemEnviada.react('📢'));
+                    
                     //inicia cooldown
                     cooldownChame.add(autor_e_pessoa);
-                    setTimeout(() => {
-                        cooldownChame.delete(autor_e_pessoa);
-                    }, 30000);
+                    cooldownChame.autor_e_pessoa = 0;
+
+                    let timer = setInterval(() => {
+                        cooldownChame.autor_e_pessoa += 1;
+
+                        if(cooldownChame.autor_e_pessoa >= tempoCooldown){
+                            cooldownChame.delete(autor_e_pessoa);
+                            clearInterval(timer);
+                        }
+                    }, 1000);
                 }
             }
             else{
