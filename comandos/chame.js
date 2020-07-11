@@ -30,11 +30,20 @@ module.exports = {
                     mensagem.channel.send(`Não, kk. (Você já chamou essa pessoa recentemente, tente de novo em ${tempoRestante} seg) ⏲️`);
                 }
                 else{
-                    if(!arg[2]){
-                        pessoa.send(autor + ' tá te chamando');
+                    //apelido
+                    let apelido = mensagem.channel.guild.member(autor).nickname;
+                    if(apelido){
+                        apelido = apelido + " (@" + autor.username + ")";
                     }
                     else{
-                        let mensagem = autor + ' tá te chamando: "';
+                        apelido = autor.username;
+                    }
+
+                    if(!arg[2]){
+                        pessoa.send("**@" + apelido + "**" + ' tá te chamando');
+                    }
+                    else{
+                        let mensagem = "**@" + apelido + "**" + ' tá te chamando: "';
                         for(let i = 2; !fimMensagemChamar; i++){
                             if(arg[i]){
                                 mensagem = mensagem + arg[i] + ' ';

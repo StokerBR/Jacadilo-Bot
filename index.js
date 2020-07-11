@@ -10,7 +10,7 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.5.1';
+const versão = '1.5.2';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -62,7 +62,7 @@ function gerenciadorErros (err, mensagem){
             canalDeVoz = mensagem.guild.voiceConnection.channel;
             if(canalDeVoz.members.size == 1){
                 canalDeVoz.leave();
-                mensagem.channel.send(`Saí do canal de voz ${canalDeVoz} porque fiquei sozinho nele`);
+                mensagem.channel.send("Saí do canal de voz " + "`" + canalDeVoz + "`" + " porque fiquei sozinho nele");
             }
             else{
                 setTimeout(() => {
@@ -206,10 +206,6 @@ bot.on('message', mensagem =>{
 
             case 'chame':
                 bot.comandos.get('chame').executar(mensagem, gerenciadorErros, arg, cooldownChame, jacadiloBotID);
-                break;
-
-            case 'crie':
-                bot.comandos.get('crie chamada').executar(mensagem, gerenciadorErros, arg);
                 break;
 
             case 'entre':
