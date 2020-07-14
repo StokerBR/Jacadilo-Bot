@@ -12,7 +12,7 @@ module.exports = {
             if(cooldownImagem.has(autor)){
                 let tempoRestante = tempoCooldown - cooldownImagem.autor;
 
-                mensagem.channel.send(`Calma aí pô. (Você tá buscando imagens rápido demais, tente de novo em ${tempoRestante} seg) ⏲️`);
+                mensagem.reply(`calma aí pô. (Você tá buscando imagens rápido demais, tente de novo em ${tempoRestante} seg) ⏲️`);
             }
             else{
                 if(!arg[1] && !arg[2]){
@@ -49,7 +49,7 @@ module.exports = {
                 let timer = setInterval(() => {
                     cooldownImagem.autor += 1;
 
-                    if(cooldownImagem.autor == tempoCooldown){
+                    if(cooldownImagem.autor >= tempoCooldown){
                         cooldownImagem.delete(autor);
                         clearInterval(timer);
                     }

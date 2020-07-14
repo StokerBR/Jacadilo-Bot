@@ -1,6 +1,6 @@
 module.exports = {
     nome: 'vídeo',
-    descrição: "Envia um vídeo do youtube aleatório sobre o termo(s) de pesquisa inserido",
+    descrição: "Envia um vídeo aleatório do youtube sobre o termo(s) de pesquisa inserido",
     uso: '``jacadilo vídeo <termo de pesquisa>``',
     argumentos: '-',
     permissãoNecessária: '-',
