@@ -10,7 +10,7 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.5.3';
+const versão = '1.6.0';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -62,7 +62,7 @@ function gerenciadorErros (err, mensagem){
             canalDeVoz = mensagem.guild.voiceConnection.channel;
             if(canalDeVoz.members.size == 1){
                 canalDeVoz.leave();
-                mensagem.channel.send("Saí do canal de voz " + "`" + canalDeVoz + "`" + " porque fiquei sozinho nele");
+                mensagem.channel.send(`Saí do canal de voz __${canalDeVoz}__ porque fiquei sozinho nele`);
             }
             else{
                 setTimeout(() => {
@@ -144,7 +144,7 @@ bot.on('message', mensagem =>{
                 mensagem.reply('tá ficando bobo?\nVocê só pode enviar "jacadilo" nesse canal').then(mensagemEnviada => mensagemEnviada.delete(5000));
             }
             //contador de jacadilos
-            else if(mensagem.author.id!=jacadiloBotID){
+            else if(mensagem.author.id != jacadiloBotID){
                 quickdb.add(`canalJacadilo_${mensagem.author.id}`, 1);
                 cargoJacadilos(mensagem);
 
@@ -260,6 +260,10 @@ bot.on('message', mensagem =>{
 
             case 'copypaste':
                 bot.comandos.get('copypaste').executar(mensagem, gerenciadorErros, fs, bot, cooldownCopypaste, laranjo);
+                break;
+
+            case 'furry':
+                bot.comandos.get('furry').executar(mensagem, gerenciadorErros, discord);
                 break;
         }
     }
