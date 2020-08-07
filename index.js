@@ -10,7 +10,7 @@ const quickdb = require('quick.db');
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.6.0';
+const versão = '1.7.0';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -264,6 +264,10 @@ bot.on('message', mensagem =>{
 
             case 'furry':
                 bot.comandos.get('furry').executar(mensagem, gerenciadorErros, discord);
+                break;
+
+            case 'leaderboard':
+                bot.comandos.get('leaderboard').executar(mensagem, gerenciadorErros, quickdb, bot, discord);
                 break;
         }
     }
