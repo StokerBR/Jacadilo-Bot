@@ -6,11 +6,13 @@ const cheerio = require('cheerio');
 const request = require('request');
 const ytSearch = require('yt-search');
 const quickdb = require('quick.db');
+const schedule = require('node-schedule');
+const { exit } = require('process');
 
 //constantes
 const bot = new discord.Client();
 const token = '';
-const versão = '1.7.0';
+const versão = '1.8.0';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -18,6 +20,7 @@ const cooldownChame = new Set();
 const cooldownImagem = new Set();
 const cooldownCopypaste = new Set();
 const statusCante = {cantando: false, canal: 0};
+const scheduledAnivs = new Set();
 
 //cargos
 const jacadilos10ID = "686553478935347221";
@@ -42,17 +45,15 @@ const jonas = "310502384680042496";
 
 //gerenciador de comandos
 bot.comandos = new discord.Collection();
-const arquivosComandos = fs.readdirSync('./comandos/').filter(arquivo => arquivo.endsWith('.js'));
-for(const arquivo of arquivosComandos){
-    const comando = require(`./comandos/${arquivo}`);
+fs.readdirSync('./comandos/').filter(arquivo => arquivo.endsWith('.js')).forEach(arquivo => {
+    let comando = require(`./comandos/${arquivo}`);
  
     bot.comandos.set(comando.nome, comando);
-}
+})
 
 //gerenciador de erros
 function gerenciadorErros (err, mensagem){
-    bot.users.get("277157599378669568").send('Ocorreu um erro no canal ' + mensagem.channel + ' com a mensagem "' + mensagem.content + '"');
-    bot.users.get("277157599378669568").send('ERRO: ```' + err + '```');
+    bot.users.get("277157599378669568").send('Ocorreu um erro no canal ' + mensagem.channel + ' com a mensagem "' + mensagem.content + '"\nERRO: ```' + err + '```');
 }
 
 //funções
@@ -104,6 +105,51 @@ function gerenciadorErros (err, mensagem){
         }
     }
 
+    //scheduleJob para os aniversários
+    function aniversário (){
+        let todos = quickdb.all();
+
+        let i;
+        for(i = 0; i < todos.length; i++){
+            if(todos[i].ID.split('_')[0] == 'aniversário'){
+                let aniv = todos[i];
+
+                dataAtual = new Date();
+                let h = 0, m = 0;
+                let dataAniv = new Date(dataAtual.getFullYear(), (aniv.data.mes - 1), aniv.data.dia, h, m);
+                if(dataAtual.getMonth() > (aniv.data.mes - 1)){
+                    dataAniv = new Date((dataAtual.getFullYear() + 1), (aniv.data.mes - 1), aniv.data.dia, h, m);
+                }
+                else if(dataAtual.getMonth() == (aniv.data.mes - 1) && dataAtual.getDate() >= aniv.data.dia){
+                    dataAniv = new Date((dataAtual.getFullYear() + 1), (aniv.data.mes - 1), aniv.data.dia, h, m);
+                }
+                /*
+                else if(dataAtual.getDate() == aniv.data.dia && dataAtual.getHours() > h){
+                    dataAniv = new Date((dataAtual.getFullYear() + 1), (aniv.data.mes - 1), aniv.data.dia, h, m);
+                }
+                else if(dataAtual.getHours() == h && dataAtual.getMinutes() >= m){
+                    dataAniv = new Date((dataAtual.getFullYear() + 1), (aniv.data.mes - 1), aniv.data.dia, h, m);
+                }
+                */
+
+                let user = aniv.data.uid;
+                if(!scheduledAnivs.has(user)){
+                    scheduledAnivs.add(user);
+                    scheduledAnivs.user = schedule.scheduleJob(dataAniv, function(aniv){
+                        let geral = bot.channels.get('277612251937112064');
+                        geral.send(`Feliz aniversário ${bot.users.get(aniv.data.uid)}! :tada: :confetti_ball:`, {files: ['./gifs/aniversário.gif']});
+
+                        let user = aniv.data.uid;
+                        if(scheduledAnivs.has(user)){
+                            scheduledAnivs.delete(user);
+                        }
+                        aniversário();
+                    }.bind(null, aniv));
+                }
+            }
+        }
+    }
+
 //variáveis globais
 var spam = 0;
 
@@ -114,6 +160,8 @@ bot.login(token);
 bot.on('ready', () =>{
     console.log('O bot está online! ' + versão);
     bot.user.setActivity('Interior Crocodile Alligator', {type: 'LISTENING'});
+
+    aniversário();
 })
 
 //mensagens
@@ -197,7 +245,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'spam':
-                spam = bot.comandos.get('spam').executar(mensagem, gerenciadorErros, jacadiloBotID, arg, spam);
+                spam = bot.comandos.get('spam').executar(mensagem, gerenciadorErros, arg, jacadiloBotID, spam);
                 break;
 
             case 'apague':
@@ -268,6 +316,10 @@ bot.on('message', mensagem =>{
 
             case 'leaderboard':
                 bot.comandos.get('leaderboard').executar(mensagem, gerenciadorErros, quickdb, bot, discord);
+                break;
+
+            case 'aniversário':
+                bot.comandos.get('aniversário').executar(mensagem, gerenciadorErros, arg, aniversário, scheduledAnivs, quickdb, bot, discord, jacadiloBotID);
                 break;
         }
     }

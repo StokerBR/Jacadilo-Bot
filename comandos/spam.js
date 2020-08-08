@@ -6,7 +6,7 @@ module.exports = {
     permissãoNecessária: 'Administrador',
     executar(mensagem, gerenciadorErros, arg, jacadiloBotID, spam){
         try{
-            if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && mensagem.author.id == "681083538107400222"){
+            if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && mensagem.author.id == jacadiloBotID){
                 if(spam == 1){
                     setTimeout(() =>{
                         mensagem.channel.send('░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░');
