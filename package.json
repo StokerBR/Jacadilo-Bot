@@ -1,6 +1,6 @@
 {
   "name": "jacadilo-bot",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "Jacadilo Bot",
   "main": "index.js",
   "scripts": {

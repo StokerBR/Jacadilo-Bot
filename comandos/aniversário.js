@@ -1,9 +1,9 @@
 module.exports = {
     nome: 'aniversário',
-    descrição: '',
-    uso: '````',
+    descrição: 'Mostra todos os aniversários dos integrantes do server que foram adicionados ao comando. No dia do aniversário da pessoa (às 00h) manda um "Feliz aniversário"',
+    uso: '``jacadilo aniversário``, ``jacadilo aniversário add @<pessoa> <dia> <mês>``, ``jacadilo aniversário apague @<pessoa>``',
     argumentos: '-',
-    permissãoNecessária: '-',
+    permissãoNecessária: 'Administrador (para adicionar ou apagar)',
     executar(mensagem, gerenciadorErros, arg, aniversário, scheduledAnivs, quickdb, bot, discord, jacadiloBotID){
         try{
             var pessoa = mensagem.mentions.users.first();

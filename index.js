@@ -11,8 +11,8 @@ const { exit } = require('process');
 
 //constantes
 const bot = new discord.Client();
-const token = '';
-const versão = '1.8.0';
+const token = fs.readFileSync('./Token.txt', 'utf8');
+const versão = '1.8.1';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -23,10 +23,10 @@ const statusCante = {cantando: false, canal: 0};
 const scheduledAnivs = new Set();
 
 //cargos
-const jacadilos10ID = "686553478935347221";
-const jacadilos100ID = "686553691985019041";
-const jacadilos1000ID = "686553760859684874";
-const jacadilos10000ID = "686553832708243487";
+const cargoJacadilos10_ID = "686553478935347221";
+const cargoJacadilos100_ID = "686553691985019041";
+const cargoJacadilos1k_ID = "686553760859684874";
+const cargoJacadilos10k_ID = "686553832708243487";
 
 //emojis
 const jacadilo = "658869016269684786";
@@ -77,10 +77,10 @@ function gerenciadorErros (err, mensagem){
     function cargoJacadilos (mensagem){
         let jacadilos = quickdb.fetch(`canalJacadilo_${mensagem.author.id}`);
 
-        let jacadilos10 = mensagem.guild.roles.get(jacadilos10ID);
-        let jacadilos100 = mensagem.guild.roles.get(jacadilos100ID);
-        let jacadilos1000 = mensagem.guild.roles.get(jacadilos1000ID);
-        let jacadilos10000 = mensagem.guild.roles.get(jacadilos10000ID);
+        let jacadilos10 = mensagem.guild.roles.get(cargoJacadilos10_ID);
+        let jacadilos100 = mensagem.guild.roles.get(cargoJacadilos100_ID);
+        let jacadilos1k = mensagem.guild.roles.get(cargoJacadilos1k_ID);
+        let jacadilos10k = mensagem.guild.roles.get(cargoJacadilos10k_ID);
 
         if(jacadilos >= 10 && jacadilos < 100 && !mensagem.member.roles.has(jacadilos10.id)){
             mensagem.member.addRole(jacadilos10).catch(console.error);
@@ -91,16 +91,16 @@ function gerenciadorErros (err, mensagem){
                 mensagem.member.removeRole(jacadilos10).catch(console.error);
             }, 5000);
         }
-        else if(jacadilos >= 1000 && jacadilos < 10000 && !mensagem.member.roles.has(jacadilos1000.id)){
-            mensagem.member.addRole(jacadilos1000).catch(console.error);
+        else if(jacadilos >= 1000 && jacadilos < 10000 && !mensagem.member.roles.has(jacadilos1k.id)){
+            mensagem.member.addRole(jacadilos1k).catch(console.error);
             setTimeout(() => {
                 mensagem.member.removeRole(jacadilos100).catch(console.error);
             }, 5000);
         }
-        else if(jacadilos >= 10000 && !mensagem.member.roles.has(jacadilos10000.id)){
-            mensagem.member.addRole(jacadilos10000).catch(console.error);
+        else if(jacadilos >= 10000 && !mensagem.member.roles.has(jacadilos10k.id)){
+            mensagem.member.addRole(jacadilos10k).catch(console.error);
             setTimeout(() => {
-                mensagem.member.removeRole(jacadilos1000).catch(console.error);
+                mensagem.member.removeRole(jacadilos1k).catch(console.error);
             }, 5000);
         }
     }
@@ -179,7 +179,7 @@ bot.on('message', mensagem =>{
         //spam
         if(spam > 0){
             let arg = null;
-            bot.comandos.get('spam').executar(mensagem, gerenciadorErros, arg, spam);
+            bot.comandos.get('spam').executar(mensagem, gerenciadorErros, arg, jacadiloBotID, spam);
         }
         if(mensagem.content == '░J░ ░A░ ░C░ ░A░ ░D░ ░I░ ░L░ ░O░' && spam == 0 && mensagem.author.id == jacadiloBotID){
             mensagem.delete(0);
@@ -289,10 +289,6 @@ bot.on('message', mensagem =>{
             case 'video':
                 bot.comandos.get('vídeo').executar(mensagem, gerenciadorErros, arg, bot, ytSearch, sadYeehaw);
                 break;
-            
-            case 'nego':
-                bot.comandos.get('nego ney').executar(mensagem, gerenciadorErros, arg);
-                break;
 
             case 'quantidade':
                 bot.comandos.get('quantidade').executar(mensagem, gerenciadorErros, arg, quickdb, bot, canalJacadiloID, jacadiloBotID, jonas, angryKirby, laranjo, thonk, kellen, groovin, cursed);
@@ -319,6 +315,9 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'aniversário':
+                bot.comandos.get('aniversário').executar(mensagem, gerenciadorErros, arg, aniversário, scheduledAnivs, quickdb, bot, discord, jacadiloBotID);
+                break;
+            case 'aniversario':
                 bot.comandos.get('aniversário').executar(mensagem, gerenciadorErros, arg, aniversário, scheduledAnivs, quickdb, bot, discord, jacadiloBotID);
                 break;
         }

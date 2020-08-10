@@ -12,7 +12,7 @@ module.exports = {
                 embed.setAuthor('Comandos Jacadilo Bot');
                 embed.setThumbnail(mensagem.guild.iconURL);
                 embed.addField(`O prefixo do bot é: ${prefixo}`, '_ _');
-                embed.addField(`**Comandos:**`, '``análise``, ``apague``, ``buzzfeed``, ``cante``, ``calado``, ``chame``, ``comandos``, ``copypaste``, ``dance``, ``entre``, ``furry``, ``imagem``, ``imite``, ``info``, ``jacadilo``, ``leaderboard``, ``nego ney``, ``oi``, ``quantidade``, ``reinicie``, ``saia``, ``spam``, ``vídeo``');
+                embed.addField(`**Comandos:**`, '``análise``, ``aniversário``, ``apague``, ``buzzfeed``, ``cante``, ``calado``, ``chame``, ``comandos``, ``copypaste``, ``dance``, ``entre``, ``furry``, ``imagem``, ``imite``, ``info``, ``jacadilo``, ``leaderboard``, ``oi``, ``quantidade``, ``reinicie``, ``saia``, ``spam``, ``vídeo``');
                 embed.addField('_Para mais informações sobre um comando específico envie:_', '_``jacadilo comandos <comando>``_');
                 embed.setTimestamp();
                 embed.setFooter(`ᒍᗩᑕᗩᗪIᒪO ᗷOT ${versão}`, bot.user.displayAvatarURL);
