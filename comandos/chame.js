@@ -39,12 +39,16 @@ module.exports = {
                         apelido = autor.username;
                     }
 
-                    if(!arg[2]){
+                    if(!arg[2] && !arg[3]){
                         pessoa.send("**@" + apelido + "**" + ' tá te chamando');
                     }
                     else{
                         let mensagem = "**@" + apelido + "**" + ' tá te chamando: "';
-                        for(let i = 2; !fimMensagemChamar; i++){
+                        
+                        let i = 2;
+                        if(!arg[2] && arg[3]) i = 3;
+
+                        for(i; !fimMensagemChamar; i++){
                             if(arg[i]){
                                 mensagem = mensagem + arg[i] + ' ';
                             }

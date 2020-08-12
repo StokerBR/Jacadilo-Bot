@@ -12,7 +12,7 @@ const { exit } = require('process');
 //constantes
 const bot = new discord.Client();
 const token = fs.readFileSync('./Token.txt', 'utf8');
-const versão = '1.8.1';
+const versão = '1.9.0';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -319,6 +319,10 @@ bot.on('message', mensagem =>{
                 break;
             case 'aniversario':
                 bot.comandos.get('aniversário').executar(mensagem, gerenciadorErros, arg, aniversário, scheduledAnivs, quickdb, bot, discord, jacadiloBotID);
+                break;
+
+            case 'rule34':
+                bot.comandos.get('rule34').executar(mensagem, gerenciadorErros, bot, request, cheerio, discord, laranjo, thonk);
                 break;
         }
     }
