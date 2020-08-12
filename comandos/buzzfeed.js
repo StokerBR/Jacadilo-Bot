@@ -17,10 +17,11 @@ module.exports = {
 
             request(opções, function(erro, response, responseBody){
                 if (erro) {
+                    mensagem.channel.send('Ocorreu um erro');
                     return;
                 }
                 $ = cheerio.load(responseBody);
-                var links = $(".js-card__link");
+                var links = $("a.js-card__link");
                 var urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr("href"));
                 if(!urls.length){
                     mensagem.channel.send(`Ué, não encontrei nenhum teste (?????)`);

@@ -23,7 +23,7 @@ module.exports = {
                     mensagem.channel.send({files: ['./imagens/jaré.jpg']});
                  }
                  else if(arg[1] == 'eneano'){
-                    pesquisa = "torbjorn overwatch";
+                    let pesquisa = "torbjorn overwatch";
                     imagem(pesquisa);
                  }
                 else if(pessoa){
@@ -68,6 +68,7 @@ module.exports = {
     
                 request(opções, function(erro, response, responseBody){
                     if (erro) {
+                        mensagem.channel.send('Ocorreu um erro');
                         return;
                     }
                     $ = cheerio.load(responseBody);
