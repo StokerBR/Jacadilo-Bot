@@ -40,14 +40,17 @@ module.exports = {
                 else if(quantidade > 1 && quantidade < 100){
                     mensagem.channel.send(`Você já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, hmm ${bot.emojis.get(thonk)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
-                else if(quantidade >= 100 && quantidade <1000){
+                else if(quantidade >= 100 && quantidade < 1000){
                     mensagem.channel.send(`Uau, você já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)} ${bot.emojis.get(kellen)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
-                else if(quantidade >= 1000 && quantidade <10000){
-                    mensagem.channel.send(`Que?!?! Você já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, isso que dá não ter nada pra fazer ${bot.emojis.get(groovin)}\nJacadilos lendários: **${jacadilosLendários}**`);
+                else if(quantidade >= 1000 && quantidade < 10000){
+                    mensagem.channel.send(`Que?!?! Você já mandou **${numeroComVirgulas(quantidade)}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, isso que dá não ter nada pra fazer ${bot.emojis.get(groovin)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
-                else if(quantidade >= 10000){
-                    mensagem.channel.send(`Como assim você já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}???! Você realmente não tem vida ${bot.emojis.get(cursed)}\nJacadilos lendários: **${jacadilosLendários}**`);
+                else if(quantidade >= 10000 && quantidade < 100000){
+                    mensagem.channel.send(`Como assim você já mandou **${numeroComVirgulas(quantidade)}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}???! Você realmente não tem vida ${bot.emojis.get(cursed)}\nJacadilos lendários: **${jacadilosLendários}**`);
+                }
+                else if(quantidade >= 100000){
+                    mensagem.channel.send(`Eu nem sei mais o que falar, você já mandou **${numeroComVirgulas(quantidade)}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, recomendo você buscar ajuda psicológica imediatamente ${bot.emojis.get(cursed)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
             }
             else{
@@ -60,15 +63,23 @@ module.exports = {
                 else if(quantidade > 1 && quantidade < 100){
                     mensagem.channel.send(`${pessoa} já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, hmm ${bot.emojis.get(thonk)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
-                else if(quantidade >= 100 && quantidade <1000){
+                else if(quantidade >= 100 && quantidade < 1000){
                     mensagem.channel.send(`Uau, ${pessoa} já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)} ${bot.emojis.get(kellen)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
-                else if(quantidade >= 1000 && quantidade <10000){
-                    mensagem.channel.send(`Que?!?! ${pessoa} já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, isso que dá não ter nada pra fazer ${bot.emojis.get(groovin)}\nJacadilos lendários: **${jacadilosLendários}**`);
+                else if(quantidade >= 1000 && quantidade < 10000){
+                    mensagem.channel.send(`Que?!?! ${pessoa} já mandou **${numeroComVirgulas(quantidade)}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, isso que dá não ter nada pra fazer ${bot.emojis.get(groovin)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
-                else if(quantidade >= 10000){
-                    mensagem.channel.send(`Como assim ${pessoa} já mandou **${quantidade}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}???! Ele/ela realmente não tem vida ${bot.emojis.get(cursed)}\nJacadilos lendários: **${jacadilosLendários}**`);
+                else if(quantidade >= 10000 && quantidade < 100000){
+                    mensagem.channel.send(`Como assim ${pessoa} já mandou **${numeroComVirgulas(quantidade)}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}???! Ele/ela realmente não tem vida ${bot.emojis.get(cursed)}\nJacadilos lendários: **${jacadilosLendários}**`);
                 }
+                else if(quantidade >= 100000){
+                    mensagem.channel.send(`Eu nem sei mais o que falar, ${pessoa} já mandou **${numeroComVirgulas(quantidade)}** jacadilos no canal ${mensagem.guild.channels.get(canalJacadiloID)}, recomendo ele/ela buscar ajuda psicológica imediatamente ${bot.emojis.get(cursed)}\nJacadilos lendários: **${jacadilosLendários}**`);
+                }
+            }
+
+
+            function numeroComVirgulas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             }
         }
         catch(err){

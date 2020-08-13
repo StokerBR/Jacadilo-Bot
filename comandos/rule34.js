@@ -6,8 +6,8 @@ module.exports = {
     permissãoNecessária: '-',
     executar(mensagem, gerenciadorErros, bot, request, cheerio, discord, laranjo, thonk){
         try{
-            nsfw = '288043615895420929'
-            if(false){
+            nsfw = '288043615895420929';
+            if(mensagem.channel.id != nsfw){
                 mensagem.reply(`só vou mandar uma imagem de rule34 no ${mensagem.guild.channels.get(nsfw)} ${bot.emojis.get(laranjo)}`);
             }
             else{
@@ -55,8 +55,7 @@ module.exports = {
             }
         }
         catch(err){
-            console.log(err)
-            //gerenciadorErros(err, mensagem);
+            gerenciadorErros(err, mensagem);
         }
     }
 }

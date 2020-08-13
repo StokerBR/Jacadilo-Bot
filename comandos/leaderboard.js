@@ -20,7 +20,7 @@ module.exports = {
 
             for(i = 0; i < tamanho; i++){
                 if(todos[i].ID.split('_')[0] == 'canalJacadilo'){
-                    mensagemFinal += `**${++j}.** ${bot.users.get(todos[i].ID.split('_')[1])}: **${todos[i].data}**\n`
+                    mensagemFinal += `**${++j}.** ${bot.users.get(todos[i].ID.split('_')[1])}: **${numeroComVirgulas(todos[i].data)}**\n`;
                 }
             }
 
@@ -29,6 +29,11 @@ module.exports = {
                 embed.addField('**Leaderboard de Jacadilos**', mensagemFinal);
 
             mensagem.channel.send(embed);
+
+
+            function numeroComVirgulas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
         }
         catch(err){
             gerenciadorErros(err, mensagem);
