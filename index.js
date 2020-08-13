@@ -12,7 +12,7 @@ const { exit } = require('process');
 //constantes
 const bot = new discord.Client();
 const token = fs.readFileSync('./Token.txt', 'utf8');
-const versão = '1.9.0';
+const versão = '1.9.1';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -23,10 +23,12 @@ const statusCante = {cantando: false, canal: 0};
 const scheduledAnivs = new Set();
 
 //cargos
+const cargoJacadilos0_ID = "742893105669341194";
 const cargoJacadilos10_ID = "686553478935347221";
 const cargoJacadilos100_ID = "686553691985019041";
 const cargoJacadilos1k_ID = "686553760859684874";
 const cargoJacadilos10k_ID = "686553832708243487";
+const cargoJacadilos100k_ID = "742855418874691645";
 
 //emojis
 const jacadilo = "658869016269684786";
@@ -77,13 +79,18 @@ function gerenciadorErros (err, mensagem){
     function cargoJacadilos (mensagem){
         let jacadilos = quickdb.fetch(`canalJacadilo_${mensagem.author.id}`);
 
+        let jacadilos0 = mensagem.guild.roles.get(cargoJacadilos0_ID);
         let jacadilos10 = mensagem.guild.roles.get(cargoJacadilos10_ID);
         let jacadilos100 = mensagem.guild.roles.get(cargoJacadilos100_ID);
         let jacadilos1k = mensagem.guild.roles.get(cargoJacadilos1k_ID);
         let jacadilos10k = mensagem.guild.roles.get(cargoJacadilos10k_ID);
+        let jacadilos100k = mensagem.guild.roles.get(cargoJacadilos100k_ID);
 
         if(jacadilos >= 10 && jacadilos < 100 && !mensagem.member.roles.has(jacadilos10.id)){
             mensagem.member.addRole(jacadilos10).catch(console.error);
+            setTimeout(() => {
+                mensagem.member.removeRole(jacadilos0).catch(console.error);
+            }, 5000);
         }
         else if(jacadilos >= 100 && jacadilos < 1000 && !mensagem.member.roles.has(jacadilos100.id)){
             mensagem.member.addRole(jacadilos100).catch(console.error);
@@ -97,10 +104,16 @@ function gerenciadorErros (err, mensagem){
                 mensagem.member.removeRole(jacadilos100).catch(console.error);
             }, 5000);
         }
-        else if(jacadilos >= 10000 && !mensagem.member.roles.has(jacadilos10k.id)){
+        else if(jacadilos >= 10000 && jacadilo < 100000 && !mensagem.member.roles.has(jacadilos10k.id)){
             mensagem.member.addRole(jacadilos10k).catch(console.error);
             setTimeout(() => {
                 mensagem.member.removeRole(jacadilos1k).catch(console.error);
+            }, 5000);
+        }
+        else if(jacadilos >= 100000 && !mensagem.member.roles.has(jacadilos100k.id)){
+            mensagem.member.addRole(jacadilos100k).catch(console.error);
+            setTimeout(() => {
+                mensagem.member.removeRole(jacadilos10k).catch(console.error);
             }, 5000);
         }
     }
