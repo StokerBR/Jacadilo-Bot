@@ -20,7 +20,10 @@ module.exports = {
                     imagem(pesquisa);
                  }
                  else if(arg[1] == 'jacadilo'){
-                    mensagem.channel.send({files: ['./imagens/jaré.jpg']});
+                    let embed = new discord.RichEmbed();
+                        embed.setColor('#D00CD2')
+                        embed.setImage('https://i.imgur.com/BOFN6F1.jpg');
+                    mensagem.channel.send(embed);
                  }
                  else if(arg[1] == 'eneano'){
                     let pesquisa = "torbjorn overwatch";
