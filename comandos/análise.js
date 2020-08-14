@@ -4,9 +4,12 @@ module.exports = {
     uso: '``jacadilo análise``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros){
+    executar(mensagem, gerenciadorErros, discord){
         try{
-            mensagem.channel.send({files: ['./imagens/análise.jpg']});
+            let embed = new discord.RichEmbed();
+                embed.setColor('#D00CD2')
+                embed.setImage('https://i.imgur.com/bBnSx9x.jpg');
+            mensagem.channel.send(embed);
         }
         catch(err){
             gerenciadorErros(err, mensagem);

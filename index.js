@@ -12,7 +12,7 @@ const { exit } = require('process');
 //constantes
 const bot = new discord.Client();
 const token = fs.readFileSync('./Token.txt', 'utf8');
-const versão = '1.9.1';
+const versão = '1.9.2';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -150,7 +150,7 @@ function gerenciadorErros (err, mensagem){
                     scheduledAnivs.add(user);
                     scheduledAnivs.user = schedule.scheduleJob(dataAniv, function(aniv){
                         let geral = bot.channels.get('277612251937112064');
-                        geral.send(`Feliz aniversário ${bot.users.get(aniv.data.uid)}! :tada: :confetti_ball:`, {files: ['./gifs/aniversário.gif']});
+                        geral.send(`Feliz aniversário ${bot.users.get(aniv.data.uid)}! :tada: :confetti_ball:`, {files: ['https://i.imgur.com/i7ZWen4.gif']});
 
                         let user = aniv.data.uid;
                         if(scheduledAnivs.has(user)){
@@ -213,7 +213,7 @@ bot.on('message', mensagem =>{
                 let lendário = Math.floor(Math.random() * 100) + 1;
                 if(lendário == 1){
                     quickdb.add(`jacadilosLendários_${mensagem.author.id}`, 1);
-                    mensagem.reply(`Uau, um **Jacadilo Lendário**! ${bot.emojis.get(dab)}`).then(mensagemEnviada => mensagemEnviada.delete(10000));
+                    mensagem.reply(`uau, um **Jacadilo Lendário**! ${bot.emojis.get(dab)}`, {files: ['https://i.imgur.com/Bdk4YtR.gif']}).then(mensagemEnviada => mensagemEnviada.delete(10000));
                 }
             }
             return;
@@ -250,7 +250,7 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'dance':
-                bot.comandos.get('dance').executar(mensagem, gerenciadorErros, bot, partyBlob);
+                bot.comandos.get('dance').executar(mensagem, gerenciadorErros, bot, discord, partyBlob);
                 break;
 
             case 'info':
@@ -286,7 +286,7 @@ bot.on('message', mensagem =>{
                 break;
             
             case 'análise':
-                bot.comandos.get('análise').executar(mensagem, gerenciadorErros);
+                bot.comandos.get('análise').executar(mensagem, gerenciadorErros, discord);
                 break;
             case 'analise':
                 bot.comandos.get('análise').executar(mensagem, gerenciadorErros);
