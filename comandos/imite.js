@@ -4,7 +4,7 @@ module.exports = {
     uso: '``jacadilo imite <argumento>``, ``jacadilo imite isso <frase>``',
     argumentos: '``mudo``, ``jacadilo``, ``sombra``, ``mãe do edésio``, ``mãe do moraes``',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros, arg, angryKirby){
+    executar(mensagem, gerenciadorErros, arg, angryKirby, jacadiloBotID){
         try{
             if(arg[1] == 'mudo'){
                 mensagem.channel.send('_ _');
@@ -36,7 +36,12 @@ module.exports = {
                 }
             }
             else if(arg[1] == 'isso'){
-                mensagem.channel.send(mensagem.content.slice(20, mensagem.content.length));
+                if(mensagem.author.id == jacadiloBotID){
+                    mensagem.channel.send('Não kkk')
+                }
+                else{
+                    mensagem.channel.send(mensagem.content.slice(20, mensagem.content.length));
+                }
             }
             
             else{
