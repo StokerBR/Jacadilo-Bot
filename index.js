@@ -12,7 +12,7 @@ const { exit } = require('process');
 //constantes
 const bot = new discord.Client();
 const token = fs.readFileSync('./Token.txt', 'utf8');
-const versão = '1.9.2';
+const versão = '1.9.3';
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -282,14 +282,14 @@ bot.on('message', mensagem =>{
                 break;
             
             case 'imite':
-                bot.comandos.get('imite').executar(mensagem, gerenciadorErros, arg, angryKirby);
+                bot.comandos.get('imite').executar(mensagem, gerenciadorErros, arg, angryKirby, jacadiloBotID);
                 break;
             
             case 'análise':
                 bot.comandos.get('análise').executar(mensagem, gerenciadorErros, discord);
                 break;
             case 'analise':
-                bot.comandos.get('análise').executar(mensagem, gerenciadorErros);
+                bot.comandos.get('análise').executar(mensagem, gerenciadorErros, discord);
                 break;
 
             case 'imagem':
@@ -336,6 +336,10 @@ bot.on('message', mensagem =>{
 
             case 'rule34':
                 bot.comandos.get('rule34').executar(mensagem, gerenciadorErros, bot, request, cheerio, discord, laranjo, thonk);
+                break;
+
+            default:
+                mensagem.channel.send('Não reconheço esse comando ' + bot.emojis.get(thonk) +'\nPara receber uma lista com todos os comandos disponíveis envie ``jacadilo comandos``');
                 break;
         }
     }
