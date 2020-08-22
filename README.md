@@ -1,2 +1,2 @@
-# Jacadilo-Bot
-Discord Bot with funny and useful commands for use on my server
+# Jacadilo-Bot 🐊
+Um bot de Discord com comandos úteis e divertidos para serem usados no meu server
