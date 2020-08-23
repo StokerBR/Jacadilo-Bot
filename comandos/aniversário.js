@@ -1,6 +1,6 @@
 module.exports = {
     nome: 'aniversário',
-    descrição: 'Mostra todos os aniversários dos integrantes do server que foram adicionados ao comando. No dia do aniversário da pessoa (às 00h) manda um "Feliz aniversário"',
+    descrição: 'Mostra todos os aniversários dos integrantes do server que foram adicionados ao comando. No dia do aniversário da pessoa (às 00h) manda um "Feliz aniversário" no chat Geral',
     uso: '``jacadilo aniversário``, ``jacadilo aniversário add @<pessoa> <dia> <mês>``, ``jacadilo aniversário apague @<pessoa>``',
     argumentos: '-',
     permissãoNecessária: 'Administrador (para adicionar ou apagar)',

@@ -11,8 +11,8 @@ module.exports = {
                 embed.setColor('#D00CD2');
                 embed.setAuthor('Comandos Jacadilo Bot');
                 embed.setThumbnail(mensagem.guild.iconURL);
-                embed.addField(`O prefixo do bot é: ${prefixo}`, '_ _');
-                embed.addField(`**Comandos:**`, '``análise``, ``aniversário``, ``apague``, ``buzzfeed``, ``cante``, ``calado``, ``chame``, ``comandos``, ``copypaste``, ``dance``, ``entre``, ``furry``, ``imagem``, ``imite``, ``info``, ``jacadilo``, ``leaderboard``, ``oi``, ``quantidade``, ``reinicie``, ``rule34``, ``saia``, ``spam``, ``vídeo``');
+                embed.addField('O prefixo do bot é: ``' + prefixo + '``', '_ _');
+                embed.addField(`**Comandos:**`, listaComandos(bot));
                 embed.addField('_Para mais informações sobre um comando específico envie:_', '_``jacadilo comandos <comando>``_');
                 embed.setTimestamp();
                 embed.setFooter(`ᒍᗩᑕᗩᗪIᒪO ᗷOT ${versão}`, bot.user.displayAvatarURL);
@@ -40,6 +40,18 @@ module.exports = {
                 else{
                     mensagem.channel.send(`Não reconheco esse comando ${bot.emojis.get(hmm)}`);
                 }
+            }
+
+            function listaComandos (bot){
+                let todos = '';
+                
+                bot.comandos.forEach(comando => {
+                      todos += '``' + comando.nome + '``, ';
+                });
+
+                todos = todos.slice(0, todos.length - 2);
+                
+                return todos;
             }
         }
         catch(err){
