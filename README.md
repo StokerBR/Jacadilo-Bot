@@ -1,8 +1,8 @@
 # Jacadilo-Bot 🐊
-Jacadilo Bot é um bot de Discord feito exclusivamente para o meu servidor. Ele possui comandos úteis e divertidos, e está atualmente na versão _1.9.3_ 🤖
+Jacadilo Bot é um bot de Discord feito exclusivamente para o meu servidor. Ele possui comandos úteis e divertidos, e está atualmente na versão _1.9.4_ 🤖
 
-> O bot foi feito em JavaScript ![js](https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-512.png =12x) com ![node.js](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/1280px-Node.js_logo_2015.svg.png =70x) e utilizando a biblioteca ![discord.js](https://www.pngfind.com/pngs/b/102-1026997_jeffy-discordjs-discord-js-logo-hd-png-download.png =75x).
-> Ele está hospedado em São Paulo em uma instância EC2 da Amazon Web Services ![aws](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png =20x).
+> O bot foi feito em JavaScript <img alt="js" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-512.png" width="12px"> com <img alt="node.js" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/1280px-Node.js_logo_2015.svg.png" width="70px"> e utilizando a biblioteca <img alt="discord.js" src="https://www.pngfind.com/pngs/b/102-1026997_jeffy-discordjs-discord-js-logo-hd-png-download.png" width="75px">.
+> Ele está hospedado em São Paulo em uma instância EC2 da Amazon Web Services <img alt="aws" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png" width="20px">.
 ## Comandos 💬
 > O prefixo do bot é: `jacadilo `
 
