@@ -12,7 +12,7 @@ const { exit } = require('process');
 //constantes
 const bot = new discord.Client();
 const token = fs.readFileSync('./Token.txt', 'utf8');
-const versão = '1.9.3';
+const versão = require('./package.json').version;
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
@@ -51,7 +51,7 @@ fs.readdirSync('./comandos/').filter(arquivo => arquivo.endsWith('.js')).forEach
     let comando = require(`./comandos/${arquivo}`);
  
     bot.comandos.set(comando.nome, comando);
-})
+});
 
 //gerenciador de erros
 function gerenciadorErros (err, mensagem){
