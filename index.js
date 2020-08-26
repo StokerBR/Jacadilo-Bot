@@ -338,6 +338,10 @@ bot.on('message', mensagem =>{
                 bot.comandos.get('rule34').executar(mensagem, gerenciadorErros, bot, request, cheerio, discord, laranjo, thonk);
                 break;
 
+            case 'mate':
+                bot.comandos.get('mate').executar(mensagem, gerenciadorErros, arg, jacadiloBotID, discord);
+                break;
+
             default:
                 mensagem.channel.send('Não reconheço esse comando ' + bot.emojis.get(thonk) +'\nPara receber uma lista com todos os comandos disponíveis envie ``jacadilo comandos``');
                 break;

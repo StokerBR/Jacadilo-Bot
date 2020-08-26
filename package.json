@@ -1,6 +1,6 @@
 {
   "name": "jacadilo-bot",
-  "version": "1.9.4",
+  "version": "1.10.0",
   "description": "Personal Discord Bot",
   "main": "index.js",
   "scripts": {

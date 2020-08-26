@@ -9,7 +9,7 @@ module.exports = {
             if(!arg[1]){
                 let embed = new discord.RichEmbed ();
                 embed.setColor('#D00CD2');
-                embed.setAuthor('Comandos Jacadilo Bot');
+                embed.setTitle('Comandos Jacadilo Bot');
                 embed.setThumbnail(mensagem.guild.iconURL);
                 embed.addField('O prefixo do bot é: ``' + prefixo + '``', '_ _');
                 embed.addField(`**Comandos:**`, listaComandos(bot));
@@ -25,7 +25,7 @@ module.exports = {
                     comando = bot.comandos.get(comando);
                     let embed = new discord.RichEmbed ();
                     embed.setColor('#D00CD2');
-                    embed.setAuthor(`Comando ${comando.nome}`);
+                    embed.setTitle(`Comando ${comando.nome}`);
                     embed.setThumbnail(mensagem.guild.iconURL);
                     embed.addField('**Nome:**', `${comando.nome}`);
                     embed.addField('**Descrição:**', `${comando.descrição}`);

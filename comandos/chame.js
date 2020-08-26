@@ -14,10 +14,7 @@ module.exports = {
             if(mensagem.mentions.everyone){
                 mensagem.channel.send('Só posso chamar uma pessoa de cada vez');
             }
-            else if(arg[1] == 'jacadilo'){
-                mensagem.channel.send('Eu já tô aqui');
-            }
-            else if(!arg[1]){
+            else if(!arg[1] && !pessoa){
                 mensagem.channel.send('Tá carente?');
             }
             else if(pessoa){
