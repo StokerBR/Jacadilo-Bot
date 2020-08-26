@@ -1,12 +1,12 @@
 # Jacadilo-Bot 🐊
-Jacadilo Bot é um bot de Discord feito exclusivamente para o meu servidor. Ele possui comandos úteis e divertidos, e está atualmente na versão _1.9.4_ 🤖
+Jacadilo Bot é um bot de Discord feito exclusivamente para o meu servidor. Ele possui comandos úteis e divertidos, e está atualmente na versão _1.10.0_ 🤖
 
-> O bot foi feito em JavaScript <img alt="js" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-512.png" width="12px"> com <img alt="node.js" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/1280px-Node.js_logo_2015.svg.png" width="70px"> e utilizando a biblioteca <img alt="discord.js" src="https://www.pngfind.com/pngs/b/102-1026997_jeffy-discordjs-discord-js-logo-hd-png-download.png" width="75px">.
+> O bot foi feito em JavaScript <img alt="js" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-512.png" width="12px"> com <img alt="node.js" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/1280px-Node.js_logo_2015.svg.png" width="65px"> e utilizando a biblioteca <img alt="discord.js" src="https://www.pngfind.com/pngs/b/102-1026997_jeffy-discordjs-discord-js-logo-hd-png-download.png" width="70px">.
 > Ele está hospedado em São Paulo em uma instância EC2 da Amazon Web Services <img alt="aws" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png" width="20px">.
 ## Comandos 💬
 > O prefixo do bot é: `jacadilo `
 
-[`aniversário`](#aniversário), [`análise`](#análise), [`apague`](#apague), [`buzzfeed`](#buzzfeed), [`calado`](#calado), [`cante`](#cante), [`chame`](#chame), [`comandos`](#comandos), [`copypaste`](#copypaste), [`dance`](#dance), [`entre`](#entre), [`furry`](#furry), [`imagem`](#imagem), [`imite`](#imite), [`info`](#info), [`jacadilo`](#jacadilo), [`leaderboard`](#leaderboard), [`oi`](#oi), [`quantidade`](#quantidade), [`reinicie`](#reinicie), [`rule34`](#rule34), [`saia`](#saia), [`spam`](#spam), [`vídeo`](#vídeo)
+[`aniversário`](#aniversário), [`análise`](#análise), [`apague`](#apague), [`buzzfeed`](#buzzfeed), [`calado`](#calado), [`cante`](#cante), [`chame`](#chame), [`comandos`](#comandos), [`copypaste`](#copypaste), [`dance`](#dance), [`entre`](#entre), [`furry`](#furry), [`imagem`](#imagem), [`imite`](#imite), [`info`](#info), [`jacadilo`](#jacadilo), [`leaderboard`](#leaderboard), [`mate`](#mate), [`oi`](#oi), [`quantidade`](#quantidade), [`reinicie`](#reinicie), [`rule34`](#rule34), [`saia`](#saia), [`spam`](#spam), [`vídeo`](#vídeo)
 ### aniversário
 - **Descrição:**
 _Mostra todos os aniversários dos integrantes do server que foram adicionados ao comando. No dia do aniversário da pessoa (às 00h) manda um "Feliz aniversário" no chat Geral_
@@ -205,6 +205,18 @@ _Envia o Leaderboard das pessoas que mandaram mais jacadilos no canal jacadilo_
 
 - **Uso:**
 _``jacadilo leaderboard``_
+
+- **Argumentos:**
+_-_
+
+- **Permissão Necessária:**
+_-_
+### mate
+- **Descrição:**
+_Envia um gif do Jacadilo matando a pessoa que foi marcada_
+
+- **Uso:**
+_``jacadilo mate @<pessoa>``_
 
 - **Argumentos:**
 _-_
