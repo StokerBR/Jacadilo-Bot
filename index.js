@@ -18,7 +18,7 @@ const canalJacadiloID = "684949321698770956";
 const prefixo = 'jacadilo ';
 const cooldownChame = new Set();
 const cooldownImagem = new Set();
-const cooldownCopypaste = new Set();
+const cooldownCopypasta = new Set();
 const statusCante = {cantando: false, canal: 0};
 const scheduledAnivs = new Set();
 
@@ -315,8 +315,11 @@ bot.on('message', mensagem =>{
                 bot.comandos.get('calado').executar(mensagem, gerenciadorErros, ytdl, statusCante);
                 break;
 
+            case 'copypasta':
+                bot.comandos.get('copypasta').executar(mensagem, gerenciadorErros, arg, fs, bot, cooldownCopypasta, laranjo);
+                break;
             case 'copypaste':
-                bot.comandos.get('copypaste').executar(mensagem, gerenciadorErros, fs, bot, cooldownCopypaste, laranjo);
+                mensagem.reply('o comando ``jacadilo copypaste`` agora é ``jacadilo copypasta``');
                 break;
 
             case 'furry':
@@ -335,11 +338,11 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'rule34':
-                bot.comandos.get('rule34').executar(mensagem, gerenciadorErros, bot, request, cheerio, discord, laranjo, thonk);
+                bot.comandos.get('rule34').executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, laranjo, thonk, cursed);
                 break;
 
             case 'mate':
-                bot.comandos.get('mate').executar(mensagem, gerenciadorErros, arg, jacadiloBotID, discord);
+                bot.comandos.get('mate').executar(mensagem, gerenciadorErros, arg, jacadiloBotID, discord, quickdb);
                 break;
 
             default:

@@ -4,11 +4,14 @@ module.exports = {
     uso: '``jacadilo rule34 <termo de pesquisa>``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros, bot, request, cheerio, discord, laranjo, thonk){
+    executar(mensagem, gerenciadorErros, arg, bot, request, cheerio, discord, laranjo, thonk, cursed){
         try{
             nsfw = '288043615895420929';
             if(mensagem.channel.id != nsfw){
                 mensagem.reply(`só vou mandar uma imagem de rule34 no ${mensagem.guild.channels.get(nsfw)} ${bot.emojis.get(laranjo)}`);
+            }
+            else if(arg[1] == 'jacadilo'){
+                mensagem.channel.send(`${bot.emojis.get(cursed)}`);
             }
             else{
                 let pesquisa = mensagem.content.slice(16, mensagem.content.length);
