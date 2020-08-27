@@ -4,7 +4,7 @@ module.exports = {
     uso: '``jacadilo mate @<pessoa>``',
     argumentos: '-',
     permissãoNecessária: '-',
-    executar(mensagem, gerenciadorErros, arg, jacadiloBotID, discord){
+    executar(mensagem, gerenciadorErros, arg, jacadiloBotID, discord, quickdb){
         try{
             let pessoa = mensagem.mentions.users.first();
             let autor = mensagem.author;
@@ -22,10 +22,21 @@ module.exports = {
                     mensagem.reply('eu gosto de você, não quero te matar');
                 }
                 else{
+                    quickdb.add(`quantidadeMortes_${pessoa.id}`, 1);
+                    let mortes = quickdb.fetch(`quantidadeMortes_${pessoa.id}`);
+
                     let embed = new discord.RichEmbed();
                         embed.setDescription(`${pessoa} foi morto(a) a pedido de ${autor}`);
                         embed.setColor('#D00CD2');
                         embed.setImage('https://i.imgur.com/s4XTNaH.gif');
+                        
+                        if(mortes == 1){
+                            embed.setFooter(`${mensagem.channel.guild.member(pessoa).nickname} já foi morto(a) 1 vez`);
+                        }
+                        else{
+                            embed.setFooter(`${mensagem.channel.guild.member(pessoa).nickname} já foi morto(a) ${mortes} vezes`);
+                        }
+
                     mensagem.channel.send(embed);
                 }
             }
