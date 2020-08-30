@@ -327,7 +327,10 @@ bot.on('message', mensagem =>{
                 break;
 
             case 'leaderboard':
-                bot.comandos.get('leaderboard').executar(mensagem, gerenciadorErros, quickdb, bot, discord);
+                bot.comandos.get('leaderboard').executar(mensagem, gerenciadorErros, arg, quickdb, bot, discord);
+                break;
+            case 'lb':
+                bot.comandos.get('leaderboard').executar(mensagem, gerenciadorErros, arg, quickdb, bot, discord);
                 break;
 
             case 'aniversário':

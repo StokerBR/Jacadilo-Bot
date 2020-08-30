@@ -22,8 +22,8 @@ module.exports = {
                     mensagem.reply('eu gosto de você, não quero te matar');
                 }
                 else{
-                    quickdb.add(`quantidadeMortes_${pessoa.id}`, 1);
                     let mortes = quickdb.fetch(`quantidadeMortes_${pessoa.id}`);
+                    quickdb.add(`quantidadeMortes_${pessoa.id}`, 1);
 
                     let embed = new discord.RichEmbed();
                         embed.setDescription(`${pessoa} foi morto(a) a pedido de ${autor}`);
@@ -31,7 +31,7 @@ module.exports = {
                         embed.setImage('https://i.imgur.com/s4XTNaH.gif');
                         
                         if(mortes == 1){
-                            embed.setFooter(`${mensagem.channel.guild.member(pessoa).nickname} já foi morto(a) 1 vez`);
+                            embed.setFooter(`É a primeira vez que ${mensagem.channel.guild.member(pessoa).nickname} é morto(a)`);
                         }
                         else{
                             embed.setFooter(`${mensagem.channel.guild.member(pessoa).nickname} já foi morto(a) ${mortes} vezes`);

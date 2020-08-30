@@ -105,7 +105,7 @@ _-_
 _-_
 ### copypasta
 - **Descrição:**
-_Envia uma copypasta aleatório_
+_Envia uma copypasta aleatória_
 
 - **Uso:**
 _``jacadilo copypasta``_
@@ -201,10 +201,10 @@ _-_
 _-_
 ### leaderboard
 - **Descrição:**
-_Envia o Leaderboard das pessoas que mandaram mais jacadilos no canal jacadilo_
+_Envia o Leaderboard das pessoas que mandaram mais jacadilos no canal jacadilo ou o Leaderboard das pessoas que mais têm Jacadilos Lendários_
 
 - **Uso:**
-_``jacadilo leaderboard``_
+_``jacadilo leaderboard``, ``jacadilo lb``, ``jacadilo leaderboard lendários``, ``jacadilo lb lendários``_
 
 - **Argumentos:**
 _-_
@@ -237,7 +237,7 @@ _-_
 _-_
 ### quantidade
 - **Descrição:**
-_Diz quantas vezes você ou a pessoa que foi marcada já mandou "jacadilo" no canal jacadilo. Também informa quantos jacadilos lendários você já conseguiu_
+_Diz quantas vezes você ou a pessoa que foi marcada já mandou "jacadilo" no canal jacadilo. Também informa quantos jacadilos lendários você já conseguiu e sua posição no Leaderboard de Jacadilos_
 
 - **Uso:**
 _``jacadilo quantidade``, ``jacadilo quanditade @<pessoa>``_
