@@ -8,11 +8,15 @@ module.exports = {
         try{
             let pessoa = mensagem.mentions.users.first();
             let autor = mensagem.author;
+
             if(mensagem.mentions.everyone){
-                mensagem.channel.send('Só posso chamar uma pessoa de cada vez');
+                mensagem.channel.send('Só posso matar uma pessoa de cada vez');
             }
             else if(!arg[1] && !pessoa){
                 mensagem.channel.send('Não dá pra eu matar o vento né');
+            }
+            else if(autor.id == jacadiloBotID){
+                mensagem.channel.send('Só vou matar uma pessoa se você mesmo pedir');
             }
             else if(pessoa){
                 if(pessoa.id == jacadiloBotID){
@@ -22,8 +26,11 @@ module.exports = {
                     mensagem.reply('eu gosto de você, não quero te matar');
                 }
                 else{
-                    let mortes = quickdb.fetch(`quantidadeMortes_${pessoa.id}`);
+                    let apelido = mensagem.channel.guild.member(pessoa).nickname;
+                    if(!apelido) apelido = pessoa.username;
+
                     quickdb.add(`quantidadeMortes_${pessoa.id}`, 1);
+                    let mortes = quickdb.fetch(`quantidadeMortes_${pessoa.id}`);
 
                     let embed = new discord.RichEmbed();
                         embed.setDescription(`${pessoa} foi morto(a) a pedido de ${autor}`);
@@ -31,10 +38,10 @@ module.exports = {
                         embed.setImage('https://i.imgur.com/s4XTNaH.gif');
                         
                         if(mortes == 1){
-                            embed.setFooter(`É a primeira vez que ${mensagem.channel.guild.member(pessoa).nickname} é morto(a)`);
+                            embed.setFooter(`É a primeira vez que ${apelido} é morto(a)`);
                         }
                         else{
-                            embed.setFooter(`${mensagem.channel.guild.member(pessoa).nickname} já foi morto(a) ${mortes} vezes`);
+                            embed.setFooter(`${apelido} já foi morto(a) ${mortes} vezes`);
                         }
 
                     mensagem.channel.send(embed);
