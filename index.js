@@ -150,7 +150,14 @@ function gerenciadorErros (err, mensagem){
                     scheduledAnivs.add(user);
                     scheduledAnivs.user = schedule.scheduleJob(dataAniv, function(aniv){
                         let geral = bot.channels.get('277612251937112064');
-                        geral.send(`Feliz aniversário ${bot.users.get(aniv.data.uid)}! :tada: :confetti_ball:`, {files: ['https://i.imgur.com/i7ZWen4.gif']});
+                        let aniversariante = bot.users.get(aniv.data.uid);
+
+                        if(aniversariante.id == jacadiloBotID){
+                            geral.send(`Feliz aniversário pra mim! :tada: :confetti_ball:`, {files: ['https://i.imgur.com/i7ZWen4.gif']});
+                        }
+                        else{
+                            geral.send(`Feliz aniversário ${aniversariante}! :tada: :confetti_ball:`, {files: ['https://i.imgur.com/i7ZWen4.gif']});
+                        }
 
                         let user = aniv.data.uid;
                         if(scheduledAnivs.has(user)){
@@ -170,15 +177,22 @@ var spam = 0;
 bot.login(token);
 
 //bot iniciado
-bot.on('ready', () =>{
+bot.on('ready', () => {
     console.log('O bot está online! ' + versão);
     bot.user.setActivity('Interior Crocodile Alligator', {type: 'LISTENING'});
 
     aniversário();
+});
+
+//mensagem de boas vindas para novos membros
+bot.on('guildMemberAdd', membro => {
+    let geral = bot.channels.get('277612251937112064');
+
+    geral.send(`${membro}, bem vindo(a) ao **ᒍᗩᑕᗩᗪIᒪO**`);
 })
 
 //mensagens
-bot.on('message', mensagem =>{
+bot.on('message', mensagem => {
     try{
         //se a mensagem for enviada no chat privado
         if(!mensagem.guild && mensagem.author.id != jacadiloBotID){

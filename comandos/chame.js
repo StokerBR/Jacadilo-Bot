@@ -30,17 +30,17 @@ module.exports = {
                     //apelido
                     let apelido = mensagem.channel.guild.member(autor).nickname;
                     if(apelido){
-                        apelido = apelido + " (@" + autor.username + ")";
+                        apelido = apelido + " (@" + autor.tag + ")";
                     }
                     else{
-                        apelido = autor.username;
+                        apelido = autor.tag;
                     }
 
                     if(!arg[2] && !arg[3]){
-                        pessoa.send("**@" + apelido + "**" + ' tá te chamando');
+                        pessoa.send('**@' + apelido + '**' + ' tá te chamando');
                     }
                     else{
-                        let mensagem = "**@" + apelido + "**" + ' tá te chamando: "';
+                        let mensagem = '**@' + apelido + '**' + ' tá te chamando: "';
                         
                         let i = 2;
                         if(!arg[2] && arg[3]) i = 3;
