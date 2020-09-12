@@ -4,7 +4,7 @@ module.exports = {
     uso: '``jacadilo aniversário``, ``jacadilo aniversário add @<pessoa> <dia> <mês>``, ``jacadilo aniversário apague @<pessoa>``',
     argumentos: '-',
     permissãoNecessária: 'Administrador (para adicionar ou apagar)',
-    executar(mensagem, gerenciadorErros, arg, aniversário, scheduledAnivs, quickdb, bot, discord, jacadiloBotID){
+    executar(mensagem, gerenciadorErros, arg, aniversário, schedule, scheduledAnivs, quickdb, bot, discord, jacadiloBotID){
         try{
             var pessoa = mensagem.mentions.users.first();
             var dia, mes, uid;
@@ -96,7 +96,7 @@ module.exports = {
                         quickdb.set(`aniversário_${uid}.uid`, uid);
                         quickdb.set(`aniversário_${uid}.dia`, dia);
                         quickdb.set(`aniversário_${uid}.mes`, mes);
-                        aniversário();
+                        aniversário(bot, quickdb, schedule, scheduledAnivs, jacadiloBotID);
     
                         mensagem.channel.send('Adicionado');
                         return;

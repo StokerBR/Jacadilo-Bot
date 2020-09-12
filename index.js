@@ -8,10 +8,11 @@ const ytSearch = require('yt-search');
 const quickdb = require('quick.db');
 const schedule = require('node-schedule');
 const { exit } = require('process');
+require('dotenv').config();
 
-//constantes
+//geral
 const bot = new discord.Client();
-const token = fs.readFileSync('./Token.txt', 'utf8');
+const token = process.env.TOKEN;
 const versão = require('./package.json').version;
 const jacadiloBotID = "681083538107400222";
 const canalJacadiloID = "684949321698770956";
@@ -45,6 +46,11 @@ const partyBlob = "660169111048945725";
 const dab = "658863094658760715";
 const jonas = "310502384680042496";
 
+//funções
+const sozinhoCanalDeVoz = require('./funções/sozinhoCanalDeVoz.js').executar; //sair do canal de voz se ficar sozinho nele
+const cargoJacadilos = require('./funções/cargoJacadilos.js').executar; //dar cargo de jacadilos
+const aniversário = require('./funções/aniversário.js').executar; //scheduleJob para os aniversários
+
 //gerenciador de comandos
 bot.comandos = new discord.Collection();
 fs.readdirSync('./comandos/').filter(arquivo => arquivo.endsWith('.js')).forEach(arquivo => {
@@ -58,118 +64,6 @@ function gerenciadorErros (err, mensagem){
     bot.users.get("277157599378669568").send('Ocorreu um erro no canal ' + mensagem.channel + ' com a mensagem "' + mensagem.content + '"\nERRO: ```' + err + '```');
 }
 
-//funções
-    //sair do canal de voz se ficar sozinho nele
-    function sozinhoCanalDeVoz (mensagem){
-        if(mensagem.guild.voiceConnection){
-            canalDeVoz = mensagem.guild.voiceConnection.channel;
-            if(canalDeVoz.members.size == 1){
-                canalDeVoz.leave();
-                mensagem.channel.send(`Saí do canal de voz __${canalDeVoz}__ porque fiquei sozinho nele`);
-            }
-            else{
-                setTimeout(() => {
-                    sozinhoCanalDeVoz(mensagem);
-                }, 60000);
-            }
-        }
-    }
-
-    //dar cargo de jacadilos
-    function cargoJacadilos (mensagem){
-        let jacadilos = quickdb.fetch(`canalJacadilo_${mensagem.author.id}`);
-
-        let jacadilos0 = mensagem.guild.roles.get(cargoJacadilos0_ID);
-        let jacadilos10 = mensagem.guild.roles.get(cargoJacadilos10_ID);
-        let jacadilos100 = mensagem.guild.roles.get(cargoJacadilos100_ID);
-        let jacadilos1k = mensagem.guild.roles.get(cargoJacadilos1k_ID);
-        let jacadilos10k = mensagem.guild.roles.get(cargoJacadilos10k_ID);
-        let jacadilos100k = mensagem.guild.roles.get(cargoJacadilos100k_ID);
-
-        if(jacadilos >= 10 && jacadilos < 100 && !mensagem.member.roles.has(jacadilos10.id)){
-            mensagem.member.addRole(jacadilos10).catch(console.error);
-            setTimeout(() => {
-                mensagem.member.removeRole(jacadilos0).catch(console.error);
-            }, 5000);
-        }
-        else if(jacadilos >= 100 && jacadilos < 1000 && !mensagem.member.roles.has(jacadilos100.id)){
-            mensagem.member.addRole(jacadilos100).catch(console.error);
-            setTimeout(() => {
-                mensagem.member.removeRole(jacadilos10).catch(console.error);
-            }, 5000);
-        }
-        else if(jacadilos >= 1000 && jacadilos < 10000 && !mensagem.member.roles.has(jacadilos1k.id)){
-            mensagem.member.addRole(jacadilos1k).catch(console.error);
-            setTimeout(() => {
-                mensagem.member.removeRole(jacadilos100).catch(console.error);
-            }, 5000);
-        }
-        else if(jacadilos >= 10000 && jacadilo < 100000 && !mensagem.member.roles.has(jacadilos10k.id)){
-            mensagem.member.addRole(jacadilos10k).catch(console.error);
-            setTimeout(() => {
-                mensagem.member.removeRole(jacadilos1k).catch(console.error);
-            }, 5000);
-        }
-        else if(jacadilos >= 100000 && !mensagem.member.roles.has(jacadilos100k.id)){
-            mensagem.member.addRole(jacadilos100k).catch(console.error);
-            setTimeout(() => {
-                mensagem.member.removeRole(jacadilos10k).catch(console.error);
-            }, 5000);
-        }
-    }
-
-    //scheduleJob para os aniversários
-    function aniversário (){
-        let todos = quickdb.all();
-
-        let i;
-        for(i = 0; i < todos.length; i++){
-            if(todos[i].ID.split('_')[0] == 'aniversário'){
-                let aniv = todos[i];
-
-                dataAtual = new Date();
-                let h = 0, m = 0;
-                let dataAniv = new Date(dataAtual.getFullYear(), (aniv.data.mes - 1), aniv.data.dia, h, m);
-                if(dataAtual.getMonth() > (aniv.data.mes - 1)){
-                    dataAniv = new Date((dataAtual.getFullYear() + 1), (aniv.data.mes - 1), aniv.data.dia, h, m);
-                }
-                else if(dataAtual.getMonth() == (aniv.data.mes - 1) && dataAtual.getDate() >= aniv.data.dia){
-                    dataAniv = new Date((dataAtual.getFullYear() + 1), (aniv.data.mes - 1), aniv.data.dia, h, m);
-                }
-                /*
-                else if(dataAtual.getDate() == aniv.data.dia && dataAtual.getHours() > h){
-                    dataAniv = new Date((dataAtual.getFullYear() + 1), (aniv.data.mes - 1), aniv.data.dia, h, m);
-                }
-                else if(dataAtual.getHours() == h && dataAtual.getMinutes() >= m){
-                    dataAniv = new Date((dataAtual.getFullYear() + 1), (aniv.data.mes - 1), aniv.data.dia, h, m);
-                }
-                */
-
-                let user = aniv.data.uid;
-                if(!scheduledAnivs.has(user)){
-                    scheduledAnivs.add(user);
-                    scheduledAnivs.user = schedule.scheduleJob(dataAniv, function(aniv){
-                        let geral = bot.channels.get('277612251937112064');
-                        let aniversariante = bot.users.get(aniv.data.uid);
-
-                        if(aniversariante.id == jacadiloBotID){
-                            geral.send(`Feliz aniversário pra mim! :tada: :confetti_ball:`, {files: ['https://i.imgur.com/i7ZWen4.gif']});
-                        }
-                        else{
-                            geral.send(`Feliz aniversário ${aniversariante}! :tada: :confetti_ball:`, {files: ['https://i.imgur.com/i7ZWen4.gif']});
-                        }
-
-                        let user = aniv.data.uid;
-                        if(scheduledAnivs.has(user)){
-                            scheduledAnivs.delete(user);
-                        }
-                        aniversário();
-                    }.bind(null, aniv));
-                }
-            }
-        }
-    }
-
 //variáveis globais
 var spam = 0;
 
@@ -181,7 +75,9 @@ bot.on('ready', () => {
     console.log('O bot está online! ' + versão);
     bot.user.setActivity('Interior Crocodile Alligator', {type: 'LISTENING'});
 
-    aniversário();
+    //console.log(/^#[0-9A-F]{6}$/i.test('#AA33FF'));
+
+    aniversário(bot, quickdb, schedule, scheduledAnivs, jacadiloBotID);
 });
 
 //mensagem de boas vindas para novos membros
@@ -221,7 +117,7 @@ bot.on('message', mensagem => {
             //contador de jacadilos
             else if(mensagem.author.id != jacadiloBotID){
                 quickdb.add(`canalJacadilo_${mensagem.author.id}`, 1);
-                cargoJacadilos(mensagem);
+                cargoJacadilos(mensagem, quickdb, cargoJacadilos0_ID, cargoJacadilos10_ID, cargoJacadilos100_ID, cargoJacadilos1k_ID, cargoJacadilos10k_ID, cargoJacadilos100k_ID);
 
                 //jacadilos lendários
                 let lendário = Math.floor(Math.random() * 100) + 1;
@@ -348,10 +244,10 @@ bot.on('message', mensagem => {
                 break;
 
             case 'aniversário':
-                bot.comandos.get('aniversário').executar(mensagem, gerenciadorErros, arg, aniversário, scheduledAnivs, quickdb, bot, discord, jacadiloBotID);
+                bot.comandos.get('aniversário').executar(mensagem, gerenciadorErros, arg, aniversário, schedule, scheduledAnivs, quickdb, bot, discord, jacadiloBotID);
                 break;
             case 'aniversario':
-                bot.comandos.get('aniversário').executar(mensagem, gerenciadorErros, arg, aniversário, scheduledAnivs, quickdb, bot, discord, jacadiloBotID);
+                bot.comandos.get('aniversário').executar(mensagem, gerenciadorErros, arg, aniversário, schedule, scheduledAnivs, quickdb, bot, discord, jacadiloBotID);
                 break;
 
             case 'rule34':

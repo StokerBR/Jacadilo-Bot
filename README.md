@@ -1,5 +1,5 @@
 # Jacadilo-Bot 🐊
-Jacadilo Bot é um bot de Discord feito exclusivamente para o meu servidor. Ele possui comandos úteis e divertidos, e está atualmente na versão _1.10.3_ 🤖
+Jacadilo Bot é um bot de Discord feito exclusivamente para o meu servidor. Ele possui comandos úteis e divertidos, e está atualmente na versão _1.10.5_ 🤖
 
 > O bot foi feito em JavaScript <img alt="js" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-512.png" width="12px"> com <img alt="node.js" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/1280px-Node.js_logo_2015.svg.png" width="65px"> e utilizando a biblioteca <img alt="discord.js" src="https://www.pngfind.com/pngs/b/102-1026997_jeffy-discordjs-discord-js-logo-hd-png-download.png" width="70px">.
 > Ele está hospedado em São Paulo em uma instância EC2 da Amazon Web Services <img alt="aws" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png" width="20px">.
@@ -7,6 +7,7 @@ Jacadilo Bot é um bot de Discord feito exclusivamente para o meu servidor. Ele 
 > O prefixo do bot é: `jacadilo `
 
 [`aniversário`](#aniversário), [`análise`](#análise), [`apague`](#apague), [`buzzfeed`](#buzzfeed), [`calado`](#calado), [`cante`](#cante), [`chame`](#chame), [`comandos`](#comandos), [`copypasta`](#copypasta), [`dance`](#dance), [`entre`](#entre), [`furry`](#furry), [`imagem`](#imagem), [`imite`](#imite), [`info`](#info), [`jacadilo`](#jacadilo), [`leaderboard`](#leaderboard), [`mate`](#mate), [`oi`](#oi), [`quantidade`](#quantidade), [`reinicie`](#reinicie), [`rule34`](#rule34), [`saia`](#saia), [`spam`](#spam), [`vídeo`](#vídeo)
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### aniversário
 - **Descrição:**
 _Mostra todos os aniversários dos integrantes do server que foram adicionados ao comando. No dia do aniversário da pessoa (às 00h) manda um "Feliz aniversário" no chat Geral_
@@ -19,6 +20,7 @@ _-_
 
 - **Permissão Necessária:**
 _Administrador (para adicionar ou apagar)_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### análise
 - **Descrição:**
 _Envia a imagem do jacadilo análise_
@@ -31,6 +33,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### apague
 - **Descrição:**
 _Apaga a quantidade determinada de mensagens (até 20)_
@@ -43,6 +46,7 @@ _-_
 
 - **Permissão Necessária:**
 _Apagar mensagens_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### buzzfeed
 - **Descrição:**
 _Envia um teste do buzzfeed aleatório_
@@ -55,6 +59,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### calado
 - **Descrição:**
 _Para de cantar_
@@ -67,6 +72,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### cante
 - **Descrição:**
 _Toca "interior crocodile alligator"_
@@ -79,6 +85,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### chame
 - **Descrição:**
 _Envia uma mensagem direta para a pessoa que foi marcada falando que você está chamando ela. Também envia uma mensagem escrita por você, caso inserida, juntamente com o chamado_
@@ -91,6 +98,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### comandos
 - **Descrição:**
 _Envia a lista de comandos ou descreve um comando específico_
@@ -103,6 +111,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### copypasta
 - **Descrição:**
 _Envia uma copypasta aleatória_
@@ -115,6 +124,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### dance
 - **Descrição:**
 _Envia um gif dancando_
@@ -127,6 +137,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### entre
 - **Descrição:**
 _Entra no canal de voz que o usuário está_
@@ -139,6 +150,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### furry
 - **Descrição:**
 _Envia uma imagem de um furry aleatório do site _This Fursona Does Not Exist__
@@ -151,6 +163,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### imagem
 - **Descrição:**
 _Envia uma imagem aleatória sobre o termo(s) de pesquisa inserido, ou a foto de perfil da pessoa marcada_
@@ -163,6 +176,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### imite
 - **Descrição:**
 _Imita uma pessoa ou uma frase_
@@ -175,6 +189,7 @@ _``mudo``, ``jacadilo``, ``sombra``, ``mãe do edésio``, ``mãe do moraes``_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### info
 - **Descrição:**
 _Forneçe informação sobre o que for pedido_
@@ -187,6 +202,7 @@ _``versão``, ``criador``, ``github``, ``jacadilo``_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### jacadilo
 - **Descrição:**
 _Envia o emoji jacadilo_
@@ -199,6 +215,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### leaderboard
 - **Descrição:**
 _Envia o Leaderboard das pessoas que mandaram mais jacadilos no canal jacadilo ou o Leaderboard das pessoas que mais têm Jacadilos Lendários_
@@ -211,6 +228,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### mate
 - **Descrição:**
 _Envia um gif do Jacadilo matando a pessoa que foi marcada_
@@ -223,6 +241,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### oi
 - **Descrição:**
 _Responde "Eae"_
@@ -235,6 +254,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### quantidade
 - **Descrição:**
 _Diz quantas vezes você ou a pessoa que foi marcada já mandou "jacadilo" no canal jacadilo. Também informa quantos jacadilos lendários você já conseguiu e sua posição no Leaderboard de Jacadilos_
@@ -247,6 +267,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### reinicie
 - **Descrição:**
 _Reinicia o bot_
@@ -259,6 +280,7 @@ _-_
 
 - **Permissão Necessária:**
 _Administrador_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### rule34
 - **Descrição:**
 _Envia uma imagem aleatória do site _Rule34_ sobre o termo(s) de pesquisa inserido_
@@ -271,6 +293,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### saia
 - **Descrição:**
 _Sai do canal de voz_
@@ -283,6 +306,7 @@ _-_
 
 - **Permissão Necessária:**
 _-_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### spam
 - **Descrição:**
 _Envia "jacadilo" periodicamente_
@@ -295,6 +319,7 @@ _``ligado``, ``desligado``, ``ligado lento``, ``status``_
 
 - **Permissão Necessária:**
 _Administrador_
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">
 ### vídeo
 - **Descrição:**
 _Envia um vídeo aleatório do youtube sobre o termo(s) de pesquisa inserido_

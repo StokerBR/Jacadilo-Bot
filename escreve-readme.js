@@ -16,7 +16,7 @@ conteudo += '\n'
 fs.readdirSync('./comandos/').filter(arquivo => arquivo.endsWith('.js')).forEach(arquivo => {
     let comando = require(`./comandos/${arquivo}`);
 
-    conteudo += `### ${comando.nome}\n- **Descrição:**\n_${comando.descrição}_\n\n- **Uso:**\n_${comando.uso}_\n\n- **Argumentos:**\n_${comando.argumentos}_\n\n- **Permissão Necessária:**\n_${comando.permissãoNecessária}_\n`;
+    conteudo += `<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png">\n### ${comando.nome}\n- **Descrição:**\n_${comando.descrição}_\n\n- **Uso:**\n_${comando.uso}_\n\n- **Argumentos:**\n_${comando.argumentos}_\n\n- **Permissão Necessária:**\n_${comando.permissãoNecessária}_\n`;
 });
 
 fs.writeFile('README.md', conteudo, function(err){
